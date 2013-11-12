@@ -1,0 +1,35 @@
+{
+  "name": "labs-accounting",
+  "version": "0.0.1",
+  "author": "Darya Yeremenko <https://github.com/summeragain>",
+  "description": "LabWork accounting utility for teachers and students",
+
+  "contributors": [
+    {
+      "name": "Darya Yeremenko",
+      "url": "https://github.com/summeragain"
+    },
+    {
+      "name": "Denis Zaryaev",
+      "url": "https://github.com/denzp"
+    }
+  ],
+
+  "scripts": {
+    "start": "node ./server.js"
+  },
+
+  "main": "./server.js",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/summeragain/labs-accounting.git"
+  },
+
+  "dependencies" : {
+    "express": "*",
+    "bower": "*"
+  },
+
+  "license": "MIT"
+}
