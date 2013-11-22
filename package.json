@@ -19,7 +19,7 @@
     "start": "node ./server.js"
   },
 
-  "main": "./server.js",
+  "main": "./backend.js",
 
   "repository": {
     "type": "git",
@@ -28,7 +28,8 @@
 
   "dependencies" : {
     "express": "*",
-    "bower": "*"
+    "sqlite3": "*",
+    "async": "*"
   },
 
   "license": "MIT"
