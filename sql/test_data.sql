@@ -31,17 +31,6 @@ INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic
     "TestPatronymic3"
   );
   
-INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic)
-  VALUES (
-    "test3",
-    "",
-    "",
-    1,
-    "TestName3",
-    "TestSurname3",
-    "TestPatronymic3"
-  );
-  
 INSERT INTO Groups (name, isDistanced)
   VALUES (
     "SP-11",

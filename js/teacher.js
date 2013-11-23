@@ -1,11 +1,11 @@
-function TeacherHelper() { }
+function TeacherHelper() { +330}
 
-TeacherHelper.prototype.getAllTeachers = function(res) {
+TeacherHelper.prototype.getAllTeachers = function(callback) {
   this.db.all("SELECT id, name, surname, patronymic FROM 'Teachers';", function(err, data) {
     if(err)
       throw err;
     
-    res.json(data);
+    callback(data);
   })
 }
 

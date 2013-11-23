@@ -5,7 +5,7 @@ GroupHelper.prototype.getAllGroups = function(res) {
     if(err)
       throw err;
     
-    res.json(data);
+    callback(data);
   })
 }
 
