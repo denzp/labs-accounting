@@ -16,7 +16,8 @@
   ],
 
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./backend.js",
+    "test": "node test/run.js"
   },
 
   "main": "./backend.js",
