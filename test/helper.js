@@ -37,12 +37,17 @@ TestHelper.prototype.test = function(name, callback) {
 }
 
 TestHelper.prototype.invoke = function(test) {
+  var self = this;
   async.waterfall(this.tests, function(err) {
     console.log('\n-----------------------------------');
     console.log('testing done!');
-    console.log('ok tests: ' + Math.round(100 - this.failedCount /  this.tests.length * 100) + '%');
-    console.log('failed tests: ' + Math.round(this.failedCount /  this.tests.length * 100) + '%');
-  }.bind(this))
+    console.log('ok tests: ' + Math.round(100 - self.failedCount /  self.tests.length * 100) + '%');
+    console.log('failed tests: ' + Math.round(self.failedCount /  self.tests.length * 100) + '%');
+    
+    if(self.failedCount != 0)
+      process.exit(1);
+
+  })
 }
 
 module.exports = TestHelper;
