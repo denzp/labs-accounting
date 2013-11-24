@@ -46,7 +46,6 @@ TestHelper.prototype.invoke = function(test) {
     
     if(self.failedCount != 0)
       process.exit(1);
-
   })
 }
 
