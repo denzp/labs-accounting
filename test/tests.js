@@ -61,5 +61,8 @@ tester
     next();
   })
 })
+.test('always-fail', function(next) {
+  next('fail!');
+})
 
 module.exports = tester;
