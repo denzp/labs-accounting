@@ -1,23 +1,34 @@
 var fs = require('fs');
 
-var checkTables = function(db) {
+var checkTables = function(db, callback) {
   db.serialize(function() {
     db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='Teachers';", function(err, data) {
-      if(data === undefined) createTables(db);
+      if(data === undefined)
+        createTables(db, callback);
+      else
+        callback();
     })
   })
 }
-var createTables = function(db) {
-  var text = fs.readFileSync('sql/prepare.sql', { encoding: 'utf-8' });
-  
+var createTables = function(db, callback) {
   db.serialize(function() {
-    db.exec(text);
+    var sql = fs.readFileSync('sql/prepare.sql', { encoding: 'utf-8' });
+    db.exec(sql, function() {
+      callback();
+    })
   })
 }
 
-module.exports.createEngine = function(db) {
-  checkTables(db);
-  
-  //TODO
-  return undefined;
+function Engine(db) {
+  this.db = db;
+}
+
+//inheriance
+require('./teacher').mixin(Engine);
+require('./group').mixin(Engine);
+
+module.exports.createEngine = function(db, callback) {
+  checkTables(db, function() {
+    callback(new Engine(db));
+  })
 }

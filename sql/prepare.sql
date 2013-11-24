@@ -4,6 +4,9 @@ CREATE TABLE "Teachers" (
   "hash" TEXT NOT NULL,
   "pubKey" TEXT NOT NULL,
   "accessType" INTEGER NOT NULL,
+  "name" TEXT NOT NULL,
+  "surname" TEXT NOT NULL,
+  "patronymic" TEXT NOT NULL,
   
   PRIMARY KEY ("id"),
   CONSTRAINT "fk_Users_AccessType_1" FOREIGN KEY ("accessType") REFERENCES "AccessType" ("id"),
