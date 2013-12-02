@@ -27,10 +27,15 @@
     "url": "https://github.com/summeragain/labs-accounting.git"
   },
 
-  "dependencies" : {
+  "dependencies": {
     "express": "*",
     "sqlite3": "*",
     "async": "*"
+  },
+  
+  "devDependencies": {
+    "vows": "*",
+    "request": "*"
   },
 
   "license": "MIT"
