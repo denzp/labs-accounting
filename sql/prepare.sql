@@ -45,6 +45,7 @@ CREATE TABLE "Students" (
 
 CREATE TABLE "Course" (
   "id" INTEGER NOT NULL,
+  "title" TEXT NOT NULL,
   "teacher" INTEGER NOT NULL,
   "group" INTEGER NOT NULL,
   "year" INTEGER NOT NULL,

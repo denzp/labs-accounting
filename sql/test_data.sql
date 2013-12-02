@@ -81,3 +81,35 @@ INSERT INTO Students (id, name, patronymic, surname, "group")
     "TestStudent3Surname",
     1
   );
+  
+INSERT INTO "Course" (teacher, title, "group", year)
+  VALUES (
+    1,
+    "TestCourse1",
+    1,
+    2013
+  );
+  
+INSERT INTO "Course" (teacher, title, "group", year)
+  VALUES (
+    1,
+    "TestCourse2",
+    2,
+    2013
+  );
+  
+INSERT INTO "Course" (teacher, title, "group", year)
+  VALUES (
+    2,
+    "TestCourse3",
+    2,
+    2013
+  );
+  
+INSERT INTO "Course" (teacher, title, "group", year)
+  VALUES (
+    2,
+    "TestCourse4",
+    3,
+    2014
+  );

@@ -13,11 +13,11 @@ module.exports = function(app) {
       res.json(data);
     });
   })
-  /*.get('/api/teacher/:id', function(req, res) {
+  .get('/api/teacher/:id', function(req, res) {
     app.getTeacherCourses(req.params.id, function(data) {
       res.json(data);
     });
-  })*/
+  })
   
   .get('/api/group/', function(req, res) {
     app.getAllGroups(function(data) {

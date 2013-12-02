@@ -157,16 +157,73 @@ vows
           "surname": "TestStudent3Surname"
         }
       ])
-    },
+    }
+  },
+  
+  'when we getting students of empty group': {
+    topic: get('/api/group/0'),
     
-    'empty group': {
-      topic: get('/api/group/0'),
-      
-      'response have 200 OK': isOk,
-      'have right body': function(err, respose, body) {
-        var body = JSON.parse(body);
-        assert.deepEqual(body, [])
-      }
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [])
+    }
+  }
+})
+.addBatch({
+  'when we getting courses of specified teacher': {
+    topic: get('/api/teacher/2'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [
+        {
+          "id": 3,
+          "title": "TestCourse3",
+          "group": 2,
+          "year": 2013
+        },
+        {
+          "id": 4,
+          "title": "TestCourse4",
+          "group": 3,
+          "year": 2014
+        }
+      ])
+    }
+  },
+  
+  'when we getting courses of specified teacher': {
+    topic: get('/api/teacher/1'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [
+        {
+          "id": 1,
+          "title": "TestCourse1",
+          "group": 1,
+          "year": 2013
+        },
+        {
+          "id": 2,
+          "title": "TestCourse2",
+          "group": 2,
+          "year": 2013
+        }
+      ])
+    }
+  },
+  
+  'when we getting courses of specified teacher which haven\'t courses yet': {
+    topic: get('/api/teacher/3'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [])
     }
   }
 })
