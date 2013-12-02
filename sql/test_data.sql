@@ -1,4 +1,4 @@
-INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic)
+INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surname", "patronymic")
   VALUES (
     "test1",
     "",
@@ -9,7 +9,7 @@ INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic
     "TestPatronymic1"
   );
   
-INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic)
+INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surname", "patronymic")
   VALUES (
     "test2",
     "",
@@ -20,7 +20,7 @@ INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic
     "TestPatronymic2"
   );
   
-INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic)
+INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surname", "patronymic")
   VALUES (
     "test3",
     "",
@@ -31,31 +31,31 @@ INSERT INTO Teachers (login, hash, pubKey, accessType, name, surname, patronymic
     "TestPatronymic3"
   );
   
-INSERT INTO Groups (name, isDistanced)
+INSERT INTO "Groups" ("name", "isDistanced")
   VALUES (
     "SP-11",
     0
   );
-  
-INSERT INTO Groups (name, isDistanced)
+
+INSERT INTO "Groups" ("name", "isDistanced")
   VALUES (
     "SP-11z",
     1
   );
-  
-INSERT INTO Groups (name, isDistanced)
+
+INSERT INTO "Groups" ("name", "isDistanced")
   VALUES (
     "SP-12-1",
     0
   );
   
-INSERT INTO Groups (name, isDistanced)
+INSERT INTO "Groups" ("name", "isDistanced")
   VALUES (
     "SP-12-2",
     0
   );
   
-INSERT INTO Students (id, name, patronymic, surname, "group")
+INSERT INTO "Students" ("id", "name", "patronymic", "surname", "group")
   VALUES (
     0,
     "TestStudent1",
@@ -64,7 +64,7 @@ INSERT INTO Students (id, name, patronymic, surname, "group")
     1
   );
 
-INSERT INTO Students (id, name, patronymic, surname, "group")
+INSERT INTO "Students" ("id", "name", "patronymic", "surname", "group")
   VALUES (
     1,
     "TestStudent2",
@@ -73,7 +73,7 @@ INSERT INTO Students (id, name, patronymic, surname, "group")
     1
   );
   
-INSERT INTO Students (id, name, patronymic, surname, "group")
+INSERT INTO "Students" ("id", "name", "patronymic", "surname", "group")
   VALUES (
     2,
     "TestStudent3",
@@ -82,7 +82,7 @@ INSERT INTO Students (id, name, patronymic, surname, "group")
     1
   );
   
-INSERT INTO "Course" (teacher, title, "group", year)
+INSERT INTO "Course" ("teacher", "title", "group", "year")
   VALUES (
     1,
     "TestCourse1",
@@ -90,7 +90,7 @@ INSERT INTO "Course" (teacher, title, "group", year)
     2013
   );
   
-INSERT INTO "Course" (teacher, title, "group", year)
+INSERT INTO "Course" ("teacher", "title", "group", "year")
   VALUES (
     1,
     "TestCourse2",
@@ -98,7 +98,7 @@ INSERT INTO "Course" (teacher, title, "group", year)
     2013
   );
   
-INSERT INTO "Course" (teacher, title, "group", year)
+INSERT INTO "Course" ("teacher", "title", "group", "year")
   VALUES (
     2,
     "TestCourse3",
@@ -106,10 +106,59 @@ INSERT INTO "Course" (teacher, title, "group", year)
     2013
   );
   
-INSERT INTO "Course" (teacher, title, "group", year)
+INSERT INTO "Course" ("teacher", "title", "group", "year")
   VALUES (
     2,
     "TestCourse4",
     3,
     2014
+  );
+
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    1,
+    10,
+    "Lab1"
+  );
+  
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    1,
+    10,
+    "Lab2"
+  );
+  
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    1,
+    5,
+    "Lab3"
+  );
+  
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    1,
+    20,
+    "Lab4"
+  );
+  
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    3,
+    10,
+    "Lab1"
+  );
+  
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    3,
+    7,
+    "Lab2"
+  );
+  
+INSERT INTO "Labs" ("course", "refMark", "name")
+  VALUES (
+    3,
+    5,
+    "Lab3"
   );

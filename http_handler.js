@@ -8,7 +8,7 @@ module.exports = function(app) {
     res.sendfile(__dirname + '/public/index.html');
   })
   
-  .get('/api/teacher/', function(req, res) {
+  .get('/api/teacher', function(req, res) {
     app.getAllTeachers(function(data) {
       res.json(data);
     });
@@ -19,7 +19,13 @@ module.exports = function(app) {
     });
   })
   
-  .get('/api/group/', function(req, res) {
+  .get('/api/course/:id', function(req, res) {
+    app.getCourseLabs(req.params.id, function(data) {
+      res.json(data);
+    });
+  })
+  
+  .get('/api/group', function(req, res) {
     app.getAllGroups(function(data) {
       res.json(data);
     });

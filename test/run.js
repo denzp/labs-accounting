@@ -74,7 +74,7 @@ vows
 })
 .addBatch({
   'when we getting teachers list': {
-    topic: get('/api/teacher/'),
+    topic: get('/api/teacher'),
     
     'response have 200 OK': isOk,
     'have right body': function(err, response, body) {
@@ -104,7 +104,7 @@ vows
 })
 .addBatch({
   'when we getting group list': {
-    topic: get('/api/group/'),
+    topic: get('/api/group'),
     
     'response have 200 OK': isOk,
     'have right body': function(err, response, body) {
@@ -224,6 +224,74 @@ vows
     'have right body': function(err, respose, body) {
       var body = JSON.parse(body);
       assert.deepEqual(body, [])
+    }
+  }
+})
+.addBatch({
+  'when we getting labs of specified course': {
+    topic: get('/api/course/1'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [
+        {
+          "id": 1,
+          "name": "Lab1",
+          "refMark": 10
+        },
+        {
+          "id": 2,
+          "name": "Lab2",
+          "refMark": 10
+        },
+        {
+          "id": 3,
+          "name": "Lab3",
+          "refMark": 5
+        },
+        {
+          "id": 4,
+          "name": "Lab4",
+          "refMark": 20
+        }
+      ])
+    }
+  },
+  
+  'when we getting labs of specified empty course': {
+    topic: get('/api/course/2'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [])
+    }
+  },
+  
+  'when we getting labs of specified course': {
+    topic: get('/api/course/3'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [
+        {
+          "id": 5,
+          "name": "Lab1",
+          "refMark": 10
+        },
+        {
+          "id": 6,
+          "name": "Lab2",
+          "refMark": 7
+        },
+        {
+          "id": 7,
+          "name": "Lab3",
+          "refMark": 5
+        }
+      ])
     }
   }
 })
