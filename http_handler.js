@@ -24,11 +24,11 @@ module.exports = function(app) {
       res.json(data);
     });
   })
-  /*.get('/api/group/:id', function(req, res) {
-    app.getGroupStudents(id, function(data) {
+  .get('/api/group/:id', function(req, res) {
+    app.getGroupStudents(req.params.id, function(data) {
       res.json(data);
     });
-  })*/
+  })
   
   .use(express.static(__dirname + '/public'))
   .listen(process.env.PORT || 8080);

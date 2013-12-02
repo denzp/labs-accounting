@@ -10,6 +10,18 @@ try {
   fs.unlinkSync('test_db.sqlite');
 } catch(e) { }
 
+function isOk(err, response) {
+  return function() {
+    assert.equal(err, undefined);
+    assert.equal(response.statusCode, 200);
+  }
+}
+function get(url) {
+  return function() {
+    request.get('http://localhost:' + (process.env.PORT || 8080) + url, this.callback);
+  }
+}
+
 var db = undefined;
 var server = undefined;
 
@@ -48,27 +60,23 @@ vows
       var sql = fs.readFileSync('sql/test_data.sql', { encoding: 'utf-8' });
       
       db.serialize(function() {
-        db.exec(sql, function() {
-          self.callback(undefined, true);
+        db.exec(sql, function(err) {
+          self.callback(err, true);
         })
       })
     },
     
     'we have success': function(err, topic) {
+      assert.equal(err, undefined);
       assert.equal(topic, true);
     }
   }
 })
 .addBatch({
   'when we getting teachers list': {
-    topic: function() {
-      request.get('http://localhost:' + (process.env.PORT || 8080) + '/api/teacher/', this.callback);
-    },
+    topic: get('/api/teacher/'),
     
-    'response have 200 OK': function(err, response) {
-      assert.equal(err, undefined);
-      assert.equal(response.statusCode, 200);
-    },
+    'response have 200 OK': isOk,
     'have right body': function(err, response, body) {
       var body = JSON.parse(body);
       assert.deepEqual(body, [
@@ -91,6 +99,74 @@ vows
           patronymic: 'TestPatronymic3'
         }
       ])
+    }
+  }
+})
+.addBatch({
+  'when we getting group list': {
+    topic: get('/api/group/'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, response, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [
+        {
+          "id": 1,
+          "name": "SP-11"
+        },
+        {
+          "id": 2,
+          "name": "SP-11z"
+        },
+        {
+          "id": 3,
+          "name": "SP-12-1"
+        },
+        {
+          "id": 4,
+          "name": "SP-12-2"
+        }
+      ])
+    }
+  }
+})
+.addBatch({
+  'when we getting students of specified group': {
+    topic: get('/api/group/1'),
+    
+    'response have 200 OK': isOk,
+    'have right body': function(err, respose, body) {
+      var body = JSON.parse(body);
+      assert.deepEqual(body, [
+        {
+          "id": 0,
+          "name": "TestStudent1",
+          "patronymic": "TestStudent1Patronymic",
+          "surname": "TestStudent1Surname"
+        },
+        {
+          "id": 1,
+          "name": "TestStudent2",
+          "patronymic": "TestStudent2Patronymic",
+          "surname": "TestStudent2Surname"
+        },
+        {
+          "id": 2,
+          "name": "TestStudent3",
+          "patronymic": "TestStudent3Patronymic",
+          "surname": "TestStudent3Surname"
+        }
+      ])
+    },
+    
+    'empty group': {
+      topic: get('/api/group/0'),
+      
+      'response have 200 OK': isOk,
+      'have right body': function(err, respose, body) {
+        var body = JSON.parse(body);
+        assert.deepEqual(body, [])
+      }
     }
   }
 })

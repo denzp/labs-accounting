@@ -54,3 +54,30 @@ INSERT INTO Groups (name, isDistanced)
     "SP-12-2",
     0
   );
+  
+INSERT INTO Students (id, name, patronymic, surname, "group")
+  VALUES (
+    0,
+    "TestStudent1",
+    "TestStudent1Patronymic",
+    "TestStudent1Surname",
+    1
+  );
+
+INSERT INTO Students (id, name, patronymic, surname, "group")
+  VALUES (
+    1,
+    "TestStudent2",
+    "TestStudent2Patronymic",
+    "TestStudent2Surname",
+    1
+  );
+  
+INSERT INTO Students (id, name, patronymic, surname, "group")
+  VALUES (
+    2,
+    "TestStudent3",
+    "TestStudent3Patronymic",
+    "TestStudent3Surname",
+    1
+  );
