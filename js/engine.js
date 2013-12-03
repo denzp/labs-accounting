@@ -2,7 +2,7 @@ var fs = require('fs');
 
 var checkTables = function(db, callback) {
   db.serialize(function() {
-    db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='Teachers';", function(err, data) {
+    db.get('SELECT "name" FROM "sqlite_master" WHERE "type"="table" AND "name"="Teachers";', function(err, data) {
       if(data === undefined)
         createTables(db, callback);
       else

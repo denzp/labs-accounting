@@ -1,8 +1,7 @@
 var express = require('express');
 
 module.exports = function(app) {
-  //http server
-  var server = express()
+  return express()
   
   .get('/', function(req, res){
     res.sendfile(__dirname + '/public/index.html');
@@ -38,6 +37,4 @@ module.exports = function(app) {
   
   .use(express.static(__dirname + '/public'))
   .listen(process.env.PORT || 8080);
-  
-  return server;
 }
