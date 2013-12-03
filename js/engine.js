@@ -26,6 +26,7 @@ function Engine(db) {
 //inheriance
 require('./teacher').mixin(Engine);
 require('./group').mixin(Engine);
+require('./course').mixin(Engine);
 
 module.exports.createEngine = function(db, callback) {
   checkTables(db, function() {

@@ -9,6 +9,15 @@ TeacherHelper.prototype.getAllTeachers = function(callback) {
   })
 }
 
+TeacherHelper.prototype.getTeacherCourses = function(id, callback) {
+  this.db.all("SELECT id, title, \"group\", year FROM 'Course' WHERE \"teacher\"=" + id + ";", function(err, data) {
+    if(err)
+      throw err;
+    
+    callback(data);
+  })
+}
+
 TeacherHelper.mixin = function(destObject){
   Object.keys(TeacherHelper.prototype).forEach(function(property) {
     destObject.prototype[property] = TeacherHelper.prototype[property];
