@@ -27,6 +27,7 @@ function Engine(db) {
 require('./teacher').mixin(Engine);
 require('./group').mixin(Engine);
 require('./course').mixin(Engine);
+require('./auth').mixin(Engine);
 
 module.exports.createEngine = function(db, callback) {
   checkTables(db, function() {
