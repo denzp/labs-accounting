@@ -15,7 +15,15 @@ angular.module('myApp.controllers', [])
 }])
 
 .controller('Groups', ['$scope', '$http', function($scope, $http) {
-  $scope.groupList = $http.get('/api/group');
+  $http.get('/api/group').success(function(data) {
+    $scope.groupList = data;
+  })
+}])
+
+.controller('ConcreteGroup', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  $http.get('/api/group/' + $routeParams.id).success(function(data) {
+    $scope.studentList = data;
+  })
 }])
 
 .controller('MainController', ['$scope', '$http', function($scope, $http) {

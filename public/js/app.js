@@ -14,8 +14,8 @@ angular.module('myApp', [
   $routeProvider.when('/teacher', { templateUrl: 'partials/teachers.html', controller: 'Teachers' });
   $routeProvider.when('/teacher/:id', { templateUrl: 'partials/concrete-teacher.html', controller: 'ConcreteTeacher' });
   
-  //$routeProvider.when('/group', { templateUrl: 'partials/groups.html', controller: 'Groups' });
-  //$routeProvider.when('/group/:id', { templateUrl: 'partials/concrete-group.html', controller: 'ConcreteGroup' });
+  $routeProvider.when('/group', { templateUrl: 'partials/groups.html', controller: 'Groups' });
+  $routeProvider.when('/group/:id', { templateUrl: 'partials/concrete-group.html', controller: 'ConcreteGroup' });
   
-  $routeProvider.otherwise({ redirectTo: '/main' });
+  $routeProvider.otherwise({ redirectTo: '/group' });
 }]);
