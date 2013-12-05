@@ -1,1 +1,5 @@
 <h3>teachers</h3>
+
+<div ng-repeat="teacher in teacherList">
+  <a ng-href="#/teacher/{{teacher.id}}">{{teacher.name}} {{teacher.patronymic}} {{teacher.surname}}</a>
+</div>

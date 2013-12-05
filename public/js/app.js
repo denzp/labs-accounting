@@ -9,8 +9,13 @@ angular.module('myApp', [
 ])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/main', {templateUrl: 'partials/main.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/teachers', {templateUrl: 'partials/teachers.html', controller: 'MyCtrl2'});
-  $routeProvider.when('/lab/:id', {templateUrl: 'partials/lab.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/main'});
+  $routeProvider.when('/main', { templateUrl: 'partials/main.html', controller: 'MainController' });
+  
+  $routeProvider.when('/teacher', { templateUrl: 'partials/teachers.html', controller: 'Teachers' });
+  $routeProvider.when('/teacher/:id', { templateUrl: 'partials/concrete-teacher.html', controller: 'ConcreteTeacher' });
+  
+  //$routeProvider.when('/group', { templateUrl: 'partials/groups.html', controller: 'Groups' });
+  //$routeProvider.when('/group/:id', { templateUrl: 'partials/concrete-group.html', controller: 'ConcreteGroup' });
+  
+  $routeProvider.otherwise({ redirectTo: '/main' });
 }]);
