@@ -5,7 +5,7 @@ function AuthorizationHelper() { }
 
 AuthorizationHelper.prototype.performLogin = function(login, hash, origin, callback) {
   var error = function(msg) {
-    return callback({ 'auth': false, 'error': msg });
+    return callback(500, { 'auth': false, 'error': msg });
   }
   
   if(!login && !hash) return error('Empty request!');
@@ -41,7 +41,7 @@ AuthorizationHelper.prototype.performLogin = function(login, hash, origin, callb
     ], function(err, pubkey) {
       if(err) throw err;
       
-      callback({
+      callback(200, {
         'auth': true,
         'id': data[0].id,
         'pubkey': pubkey.toString('hex')
@@ -52,7 +52,7 @@ AuthorizationHelper.prototype.performLogin = function(login, hash, origin, callb
 
 AuthorizationHelper.prototype.checkAuthorization = function(login, pubkey, callback) {
   var error = function(msg) {
-    return callback({ 'auth': false });
+    return callback(500, { 'auth': false });
   }
   
   if(!login && !pubkey) return error();
@@ -73,7 +73,7 @@ AuthorizationHelper.prototype.checkAuthorization = function(login, pubkey, callb
       if(err) throw err;
       
       if(refPubkey.toString('hex') == pubkey)
-         callback({
+         callback(200, {
           'auth': true,
           'id': data[0].id
         })
