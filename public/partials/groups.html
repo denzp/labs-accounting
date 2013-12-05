@@ -1,5 +1,7 @@
 <h3>Groups</h3>
 
-<div ng-repeat="group in groupList">
-  <a ng-href="#/group/{{group.id}}">{{group.name}}</a>
-</div>
+<ul>
+  <li ng-repeat="group in groupList">
+    <a ng-href="#/group/{{group.id}}">{{group.name}}</a>
+  </li>
+</ul>
