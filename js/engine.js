@@ -2,7 +2,7 @@ var fs = require('fs');
 
 var checkTables = function(db, callback) {
   db.serialize(function() {
-    db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='Teachers';", function(err, data) {
+    db.get('SELECT "name" FROM "sqlite_master" WHERE "type"="table" AND "name"="Teachers";', function(err, data) {
       if(data === undefined)
         createTables(db, callback);
       else
@@ -27,6 +27,7 @@ function Engine(db) {
 require('./teacher').mixin(Engine);
 require('./group').mixin(Engine);
 require('./course').mixin(Engine);
+require('./auth').mixin(Engine);
 
 module.exports.createEngine = function(db, callback) {
   checkTables(db, function() {

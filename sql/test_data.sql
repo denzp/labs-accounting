@@ -1,7 +1,7 @@
-INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surname", "patronymic")
+INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "surname", "patronymic")
   VALUES (
     "test1",
-    "",
+    "test1SecretPw",
     "",
     1,
     "TestName1",
@@ -9,10 +9,10 @@ INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surnam
     "TestPatronymic1"
   );
   
-INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surname", "patronymic")
+INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "surname", "patronymic")
   VALUES (
     "test2",
-    "",
+    "test2SecretPw",
     "",
     1,
     "TestName2",
@@ -20,10 +20,10 @@ INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surnam
     "TestPatronymic2"
   );
   
-INSERT INTO "Teachers" ("login", "hash", "pubKey", "accessType", "name", "surname", "patronymic")
+INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "surname", "patronymic")
   VALUES (
     "test3",
-    "",
+    "test3SecretPw",
     "",
     1,
     "TestName3",
