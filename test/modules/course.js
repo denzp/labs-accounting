@@ -12,6 +12,7 @@ var tests = [
         assert.deepEqual(body, {
           "id": 2,
           "title": "TestCourse2",
+          "groupName": "SP-11z",
           "group": 2,
           "year": 2013
         })
@@ -28,7 +29,7 @@ var tests = [
       }
     },
     
-    'when we getting labs of specified course': {
+    'when we getting labs of specified course (0)': {
       topic: utils.get('/api/course/1/labs'),
       
       'response have 200 OK': utils.isOk,
@@ -69,7 +70,7 @@ var tests = [
       }
     },
     
-    'when we getting labs of specified course': {
+    'when we getting labs of specified course (1)': {
       topic: utils.get('/api/course/3/labs'),
       
       'response have 200 OK': utils.isOk,

@@ -22,7 +22,12 @@ TeacherHelper.prototype.getTeacherInfo = function(id, callback) {
 }
 
 TeacherHelper.prototype.getTeacherCourses = function(id, callback) {
-  this.db.all('SELECT "id", "title", "group", "year" FROM "Course" WHERE "teacher"=' + id + ';', function(err, data) {
+  var query = [
+    'SELECT c."id", "title", "group", g."name" as "groupName", "year" FROM "Course" c',
+    'LEFT JOIN "Groups" g on g."id" = c."group"',
+    'WHERE c."teacher"=' + id + ';'
+  ];
+  this.db.all(query.join(' '), function(err, data) {
     if(err)
       throw err;
     

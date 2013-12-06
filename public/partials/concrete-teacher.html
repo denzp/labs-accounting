@@ -1,7 +1,7 @@
-<h3>Courses</h3>
+<h3>{{info.name}}'s {{info.surname}} courses</h3>
 
 <ul>
   <li ng-repeat="course in coursesList">
-    <a ng-href="#/course/{{course.id}}">{{course.title}}</a>
+    <a ng-href="#/course/{{course.id}}">{{course.title}} - {{course.groupName}}</a>
   </li>
 </ul>

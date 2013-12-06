@@ -59,7 +59,7 @@ var tests = [
   },
   
   {
-    'when we getting courses of specified teacher':
+    'when we getting courses of specified teacher (0)':
     {
       topic: utils.get('/api/teacher/2/courses'),
       
@@ -71,19 +71,21 @@ var tests = [
             "id": 3,
             "title": "TestCourse3",
             "group": 2,
+            "groupName": "SP-11z",
             "year": 2013
           },
           {
             "id": 4,
             "title": "TestCourse4",
             "group": 3,
+            "groupName": "SP-12-1",
             "year": 2014
           }
         ])
       }
     },
     
-    'when we getting courses of specified teacher': {
+    'when we getting courses of specified teacher (1)': {
       topic: utils.get('/api/teacher/1/courses'),
       
       'response have 200 OK': utils.isOk,
@@ -94,12 +96,14 @@ var tests = [
             "id": 1,
             "title": "TestCourse1",
             "group": 1,
+            "groupName": "SP-11",
             "year": 2013
           },
           {
             "id": 2,
             "title": "TestCourse2",
             "group": 2,
+            "groupName": "SP-11z",
             "year": 2013
           }
         ])
