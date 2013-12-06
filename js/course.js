@@ -10,7 +10,13 @@ CourseHelper.prototype.getCourseLabs = function(id, callback) {
 }
 
 CourseHelper.prototype.getCourseInfo = function(id, callback) {
-  this.db.all('SELECT "id", "title", "group", "year" FROM "Course" WHERE "id"=' + id + ';', function(err, data) {
+  var query = [
+    'SELECT c."id", "title", "group", g."name" as "groupName", "year" FROM "Course" c',
+    'LEFT JOIN "Groups" g on g."id" = c."group"',
+    'WHERE c."id"=' + id + ';'
+  ];
+  
+  this.db.all(query.join(' '), function(err, data) {
     if(err)
       throw err;
     
