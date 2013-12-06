@@ -2,7 +2,7 @@ CREATE TABLE "Teachers" (
   "id" INTEGER NOT NULL,
   "login" TEXT NOT NULL,
   "hash" TEXT NOT NULL,
-  "pubKey" TEXT NOT NULL,
+  "originHash" TEXT NOT NULL,
   "accessType" INTEGER NOT NULL,
   "name" TEXT NOT NULL,
   "surname" TEXT NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE "AccessType" (
   "id" INTEGER NOT NULL,
   "description" TEXT NOT NULL,
   
-  PRIMARY KEY ("id") 
+  PRIMARY KEY ("id")
 );
 
 INSERT INTO "AccessType" VALUES (1, "Teacher access");
@@ -45,6 +45,7 @@ CREATE TABLE "Students" (
 
 CREATE TABLE "Course" (
   "id" INTEGER NOT NULL,
+  "title" TEXT NOT NULL,
   "teacher" INTEGER NOT NULL,
   "group" INTEGER NOT NULL,
   "year" INTEGER NOT NULL,
