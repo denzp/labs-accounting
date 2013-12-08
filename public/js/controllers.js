@@ -9,11 +9,11 @@ angular.module('myApp.controllers', [])
 }])
 
 .controller('ConcreteTeacher', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  $scope.resolve = $http.get('/api/teacher/' + $routeParams.id).success(function(data) {
+    $scope.info = data;
+  })
   $http.get('/api/teacher/' + $routeParams.id + '/courses').success(function(data) {
     $scope.coursesList = data;
-  })
-  $http.get('/api/teacher/' + $routeParams.id).success(function(data) {
-    $scope.info = data;
   })
 }])
 

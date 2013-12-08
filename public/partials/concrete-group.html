@@ -1,7 +1,21 @@
-<h3>{{info.name}} students</h3>
+<div class="page-header">
+  <h1>{{info.name}} <small>students</small></h1>
+</div>
 
-<ul>
-  <li ng-repeat="student in studentList">
-    {{student.name}} {{student.patronymic}} {{student.surname}}
-  </li>
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Patronymic</th>
+      <th>Surname</th>
+    </tr>  
+  </thead>
+  
+  <tr ng-repeat="student in studentList">
+    <td ng-bind="$index"></td>
+    <td ng-bind="student.name"></td>
+    <td ng-bind="student.patronymic"></td>
+    <td ng-bind="student.surname"></td>
+  </tr>
+</table>

@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8">
   <title>My AngularJS App</title>
-  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/bootstrap-theme.css" />
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/hint.css">
 </head>
 <body>
-  <ul class="menu">
-    <!-- <li><a href="#/main">Overview</a></li> -->
-    <li><a href="#/group">List of Groups</a></li>
-    <li><a href="#/teacher">List of Teachers</a></li>
-  </ul>
+  <div id="header">
+    <a href="#" class="main-title">
+      Labs Accounting <small>application</small>
+    </a>
+    
+    <div class="login-toggler">Log in</div>
+  </div>
+  
+  <div class="col-sm-1 menu-wrapper">
+    <ul id="main-menu">
+      <li>
+        <a href="#/group" class="hint--right" data-hint="Groups">
+          <span class="glyphicon glyphicon-home"></span>
+        </a>
+      </li>
+      <li>
+        <a href="#/teacher" class="hint--right" data-hint="Teachers">
+          <span class="glyphicon glyphicon-user"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-  <div ng-view></div>
+  <div class="col-sm-11" ng-view></div>
 
+  <!--<script src="lib/bootstrap.js"></script>-->
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-route.js"></script>
   <script src="js/app.js"></script>
