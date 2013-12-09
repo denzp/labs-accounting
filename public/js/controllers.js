@@ -21,5 +21,8 @@ angular.module('myApp.controllers', [])
 }])
 
 .controller('MainController', ['$scope', function($scope) {
-  //
+  $scope.loginVisibility = false;
+  $scope.toggleLogin = function() {
+    $scope.loginVisibility = !$scope.loginVisibility;
+  }
 }])

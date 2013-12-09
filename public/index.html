@@ -8,14 +8,28 @@
   <link rel="stylesheet" href="css/bootstrap.css" />
   <link rel="stylesheet" href="css/hint.css">
 </head>
-<body>
+<body ng-controller="MainController">
   <div id="header">
     <a href="#" class="main-title">
       Labs Accounting <small>application</small>
     </a>
     
-    <div class="login-toggler">Log in</div>
+    <div class="login-toggler" ng-class="{active: loginVisibility}" ng-click="toggleLogin()">Log in</div>
   </div>
+  
+  <form id="loginPopup" ng-show="loginVisibility == true">
+    <div class="form-group">
+      <label>Login</label>
+      <input type="text" class="form-control" placeholder="Enter login">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" placeholder="Enter password">
+    </div>
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-primary">Log in</button>
+    </div>
+  </form>
   
   <div class="col-sm-1 menu-wrapper">
     <ul id="main-menu">
