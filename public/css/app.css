@@ -1,3 +1,10 @@
+a:active {
+  outline: none !important;
+}
+a:focus {
+  outline-style: none !important;
+}
+
 #header {
   background-color: #1f1f1f;
   color: white;
