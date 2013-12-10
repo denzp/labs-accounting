@@ -16,7 +16,7 @@ AuthorizationHelper.prototype.performLogin = function(login, hash, origin, callb
   hash  = hash.replace(/[^\w]+/, '');
   
   var self = this;
-  this.db.all('SELECT "id" FROM "Teachers" WHERE "login"="' + login + '" AND "hash"="' + hash + '";', function(err, data) {
+  this.db.all('SELECT * FROM "Teachers" WHERE "login"="' + login + '" AND "hash"="' + hash + '";', function(err, data) {
     if(err) throw err;
     if(data.length != 1) return error('Authorization failed!');
     
@@ -44,7 +44,10 @@ AuthorizationHelper.prototype.performLogin = function(login, hash, origin, callb
       callback(200, {
         'auth': true,
         'id': data[0].id,
-        'pubkey': pubkey.toString('hex')
+        'pubkey': pubkey.toString('hex'),
+        'login': data[0].login,
+        'name': data[0].name,
+        'surname': data[0].surname
       })
     })
   })

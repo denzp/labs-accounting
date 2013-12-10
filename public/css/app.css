@@ -5,13 +5,16 @@ a:focus {
   outline-style: none !important;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 #header {
   background-color: #1f1f1f;
   color: white;
   font-size: 12pt;
   display: flex;
-  align-items:  center;
-  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 #header > .main-title {
@@ -19,8 +22,6 @@ a:focus {
   text-decoration: none;
   font-size: 1.8em;
   font-weight: 700;
-  
-  margin-left: 100px;
   display: inline-block;
 }
 #header > .main-title:hover small {
@@ -32,25 +33,51 @@ a:focus {
   color: #bababa;
 }
 
-#header > .login-toggler {
-  margin-right: 20px;
+#header > .login-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+#header .log-out {
+  display: inline-block;
+  padding: 0px 5px 3px 5px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+#header .log-out:hover > span {
+  color: #75b6ef;
+}
+#header .log-out > span {
+  font-size: 10pt;
+  color: #b1b1b1;
+}
+#header .login-toggler {
   padding: 3px 10px;
-  
+    
   align-self: stretch;
   cursor: pointer;
   
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-#header > .login-toggler:hover {
+#header > .login-toggler-wrapper {    
+  align-self: stretch;
+  cursor: pointer;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#header .login-toggler:hover {
   background-color: #5d5d5d;
   text-shadow: 1px 1px 0px black;
 }
-#header > .login-toggler.active {
+#header .login-toggler.active {
   background-color: #5d5d5d;
   text-shadow: 1px 1px 0px black;
 }
-#header > .login-toggler.active:hover {
+#header .login-toggler.active:hover {
   background-color: #797979;
 }
 
