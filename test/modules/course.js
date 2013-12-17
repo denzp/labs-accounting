@@ -14,7 +14,7 @@ var tests = [
           "title": "TestCourse2",
           "groupName": "SP-11z",
           "group": 2,
-          "year": 2013
+          "quarter": 2
         })
       }
     },

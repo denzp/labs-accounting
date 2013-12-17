@@ -11,7 +11,7 @@ CourseHelper.prototype.getCourseLabs = function(id, callback) {
 
 CourseHelper.prototype.getCourseInfo = function(id, callback) {
   var query = [
-    'SELECT c."id", "title", "group", g."name" as "groupName", "year" FROM "Course" c',
+    'SELECT c."id", "title", "group", g."name" as "groupName", "quarter" FROM "Course" c',
     'LEFT JOIN "Groups" g on g."id" = c."group"',
     'WHERE c."id"=' + id + ';'
   ];
@@ -24,6 +24,24 @@ CourseHelper.prototype.getCourseInfo = function(id, callback) {
       return callback(404, null);
     
     callback(200, data[0]);
+  })
+}
+
+CourseHelper.prototype.getCourseStudents = function(id, callback) {
+  var query = [
+    'SELECT s."id", s."name", s."patronymic", s."surname" FROM "Course" c',
+    'LEFT JOIN "Students" s on s."group" = c."group"',
+    'WHERE c."id"=' + id + ';'
+  ];
+  
+  this.db.all(query.join(' '), function(err, data) {
+    if(err)
+      throw err;
+    
+    if(data.length == 0)
+      return callback(404, null);
+    
+    callback(200, data);
   })
 }
 

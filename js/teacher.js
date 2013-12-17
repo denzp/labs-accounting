@@ -23,7 +23,7 @@ TeacherHelper.prototype.getTeacherInfo = function(id, callback) {
 
 TeacherHelper.prototype.getTeacherCourses = function(id, callback) {
   var query = [
-    'SELECT c."id", "title", "group", g."name" as "groupName", "year" FROM "Course" c',
+    'SELECT c."id", "title", "group", g."name" as "groupName", "quarter" FROM "Course" c',
     'LEFT JOIN "Groups" g on g."id" = c."group"',
     'WHERE c."teacher"=' + id + ';'
   ];

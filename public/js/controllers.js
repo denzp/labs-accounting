@@ -15,9 +15,28 @@ angular.module('myApp.controllers', [])
   $scope.groupList = groupList.data;
 }])
 
-.controller('ConcreteGroup', ['$scope', 'studentsList', 'groupInfo', function($scope, studentsList, groupInfo) {
-  $scope.studentsList = studentsList.data;
+.controller('ConcreteGroup', ['$scope', 'coursesList', 'groupInfo', function($scope, coursesList, groupInfo) {
+  $scope.groupCoursesList = coursesList.data;
   $scope.info = groupInfo.data;
+  
+  var maxQuarter = 0;
+  $scope.quarters = { };
+  coursesList.data.map(function(v) {
+    if($scope.quarters[v.quarter] === undefined) {
+      $scope.quarters[v.quarter] = {
+        visible: false,
+        count: 1,
+        id: v.quarter
+      }
+      
+      if(v.quarter > maxQuarter)
+        maxQuarter = v.quarter;
+    }
+    
+    ++$scope.quarters[v.quarter].count;
+  })
+  
+  $scope.quarters[maxQuarter].visible = true;
 }])
 
 .controller('MainController', ['$scope', '$timeout', 'Backend', function($scope, $timeout, Backend) {
@@ -58,5 +77,50 @@ angular.module('myApp.controllers', [])
   $scope.performLogout = function() {
     $scope.login = { };
     localStorage.loginData = '{ }';
+  }
+}])
+
+.controller('ConcreteCourse', ['$scope', 'courseInfo', 'labsList', 'studentsList', function($scope, courseInfo, labsList, studentsList) {
+  $scope.info = courseInfo.data;
+  $scope.labsList = labsList.data;
+  $scope.studentsList = studentsList.data;
+  
+  $scope.calcScale = function(studentId, labId) {
+    var mark = ($scope.labMarks[studentId] || [])[labId] || 0;
+    
+    if(mark < 0.3333)
+      return 'bad-mark';
+    
+    if(mark < 0.6666)
+      return 'average-mark';
+    
+    if(mark < 0.9)
+      return 'almost-good-mark';
+    
+    return 'good-mark';
+  }
+  
+  // mock data
+  $scope.testsList = [
+    { name: 'Test 1' },
+    { name: 'Test 2' }
+  ];
+  
+  $scope.labMarks = {
+    0: {
+      1: 0.5444444,
+      4: 1
+    },
+    
+    1: {
+      1: 0.5444444,
+      4: 1,
+      3: 0.8,
+      2: 0.9999999
+    },
+    
+    2: {
+      3: 0.1
+    }
   }
 }])

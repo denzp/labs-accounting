@@ -72,14 +72,14 @@ var tests = [
             "title": "TestCourse3",
             "group": 2,
             "groupName": "SP-11z",
-            "year": 2013
+            "quarter": 3
           },
           {
             "id": 4,
             "title": "TestCourse4",
             "group": 3,
             "groupName": "SP-12-1",
-            "year": 2014
+            "quarter": 4
           }
         ])
       }
@@ -97,14 +97,14 @@ var tests = [
             "title": "TestCourse1",
             "group": 1,
             "groupName": "SP-11",
-            "year": 2013
+            "quarter": 1
           },
           {
             "id": 2,
             "title": "TestCourse2",
             "group": 2,
             "groupName": "SP-11z",
-            "year": 2013
+            "quarter": 2
           }
         ])
       }

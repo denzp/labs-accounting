@@ -48,7 +48,17 @@ angular.module('myApp', [
     controller: 'ConcreteGroup',
     resolve: {
       groupInfo: wrapWithId('getGroupInfoPromise'),
-      studentsList: wrapWithId('getGroupStudentsListPromise'),
+      coursesList: wrapWithId('getGroupCoursesListPromise'),
+    }
+  });
+  
+  $routeProvider.when('/course/:id', {
+    templateUrl: 'partials/concrete-course.html',
+    controller: 'ConcreteCourse',
+    resolve: {
+      courseInfo: wrapWithId('getCourseInfoPromise'),
+      labsList: wrapWithId('getCourseLabsListPromise'),
+      studentsList: wrapWithId('getCourseStudentsListPromise'),
     }
   });
   

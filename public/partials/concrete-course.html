@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>{{info.title}} <small>labs</small></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Student</th>
+      
+      <th ng-repeat="lab in labsList" ng-bind="lab.name"></th>
+      <th ng-repeat="test in testsList" ng-bind="test.name"></th>
+      
+      <th>
+        <div class="log-out hint--right hint--default" data-hint="Addinational points">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        </div>
+      </th>
+      
+      <th>&#x2211;</th>
+      <th>Mark</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr ng-repeat="student in studentsList">
+      <td ng-bind="$index + 1"></td>
+      <td ng-bind="student.name + ' ' + student.surname"></td>
+      
+      <td ng-repeat="lab in labsList"
+          ng-bind="labMarks[student.id][lab.id] | labMark"
+          ng-class="calcScale(student.id, lab.id)"></td>
+      <td ng-repeat="test in testsList">0</td>
+      
+      <td>0</td>
+      <td>TODO</td>
+      <td>TODO</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td>reference points: </td>
+      
+      <td ng-repeat="lab in labsList" ng-bind="lab.refMark"></td>
+      <td ng-repeat="test in testsList"></td>
+      
+      <td></td>
+      <td>TODO</td>
+      <td></td>
+    </tr>
+  </tfoot>
+</table>

@@ -1,21 +1,23 @@
 <div class="page-header">
-  <h1>{{info.name}} <small>students</small></h1>
+  <h1>{{info.name}} <small>courses</small></h1>
 </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Patronymic</th>
-      <th>Surname</th>
-    </tr>  
-  </thead>
-  
-  <tr ng-repeat="student in studentsList">
-    <td ng-bind="$index"></td>
-    <td ng-bind="student.name"></td>
-    <td ng-bind="student.patronymic"></td>
-    <td ng-bind="student.surname"></td>
-  </tr>
-</table>
+<div class="col-sm-9 main-view">
+  <ul class="course-list">
+    <li ng-repeat="course in groupCoursesList | courseFilter:{ quarters: quarters } | quarterSort">
+      <a ng-href="#/course/{{course.id}}" ng-bind="course.title"></a>
+      <span class="label label-primary">{{course.quarter}} quarter</span>
+    </li>
+  </ul>
+</div>
+
+<div class="col-sm-3 right-sidebar">
+  <h3>Quarters filter</h3>
+  <ul>
+    <li ng-repeat="quarter in quarters | quarterFilterSort">
+      <label>
+        <input type="checkbox" ng-model="quarter.visible"> {{quarter.id}} quarter
+      </label>
+    </li>
+  </ul>
+</div>

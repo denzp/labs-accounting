@@ -154,3 +154,67 @@ body {
   border-width: 11px;
   margin-left: -11px;
 }
+
+.course-list li {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.main-view {
+  padding-left: 0px !important;
+}
+
+.right-sidebar {
+  text-align: right;
+}
+
+.right-sidebar h3 {
+  color: #266dac;
+  border-right: 3px solid #428bca;
+  
+  margin-top: 15px;
+  margin-bottom: 0px;
+  
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+}
+
+.right-sidebar ul {
+  padding: 0px;
+  list-style: none;
+}
+
+.right-sidebar li:first-child {
+  border-top: 1px solid rgb(200, 200, 200);
+}
+.right-sidebar li label {
+  display: block;
+}
+.right-sidebar li {
+  border-bottom: 1px solid rgb(200, 200, 200);
+  text-align: left;
+  
+  padding: 5px 10px;
+  padding-bottom: 0px;
+}
+.right-sidebar li:hover {
+  background-color: rgba(66, 139, 202, 0.1);
+}
+
+tfoot td {
+  font-weight: 800;
+}
+
+.good-mark {
+  background-color: rgba(0, 128, 0, 0.2) !important;
+}
+.almost-good-mark {
+  background-color: rgba(128, 255, 0, 0.2) !important;
+}
+.average-mark {
+  background-color: rgba(255, 255, 0, 0.2) !important;
+}
+.bad-mark {
+  background-color: rgba(255, 0, 0, 0.2) !important;
+}

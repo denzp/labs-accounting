@@ -34,6 +34,11 @@ module.exports = function(app) {
       res.json(code || 200, data);
     });
   })
+  .get('/api/course/:id/students', function(req, res) {
+    app.getCourseStudents(req.params.id, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
   
   .get('/api/group', function(req, res) {
     app.getAllGroups(function(code, data) {
@@ -42,6 +47,11 @@ module.exports = function(app) {
   })
   .get('/api/group/:id', function(req, res) {
     app.getGroupInfo(req.params.id, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .get('/api/group/:id/courses', function(req, res) {
+    app.getGroupCourses(req.params.id, function(code, data) {
       res.json(code || 200, data);
     });
   })
