@@ -82,36 +82,36 @@ INSERT INTO "Students" ("id", "name", "patronymic", "surname", "group")
     1
   );
   
-INSERT INTO "Course" ("teacher", "title", "group", "year")
+INSERT INTO "Course" ("teacher", "title", "group", "quarter")
   VALUES (
     1,
     "TestCourse1",
     1,
-    2013
+    1
   );
   
-INSERT INTO "Course" ("teacher", "title", "group", "year")
+INSERT INTO "Course" ("teacher", "title", "group", "quarter")
   VALUES (
     1,
     "TestCourse2",
     2,
-    2013
+    2
   );
   
-INSERT INTO "Course" ("teacher", "title", "group", "year")
+INSERT INTO "Course" ("teacher", "title", "group", "quarter")
   VALUES (
     2,
     "TestCourse3",
     2,
-    2013
+    3
   );
   
-INSERT INTO "Course" ("teacher", "title", "group", "year")
+INSERT INTO "Course" ("teacher", "title", "group", "quarter")
   VALUES (
     2,
     "TestCourse4",
     3,
-    2014
+    4
   );
 
 INSERT INTO "Labs" ("course", "refMark", "name")

@@ -48,7 +48,7 @@ CREATE TABLE "Course" (
   "title" TEXT NOT NULL,
   "teacher" INTEGER NOT NULL,
   "group" INTEGER NOT NULL,
-  "year" INTEGER NOT NULL,
+  "quarter" INTEGER NOT NULL,
   
   PRIMARY KEY ("id"),
   CONSTRAINT "fk_Course_Teachers_1" FOREIGN KEY ("teacher") REFERENCES "Teachers" ("id"),

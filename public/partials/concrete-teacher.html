@@ -2,8 +2,10 @@
   <h1>{{info.name}} <small>courses</small></h1>
 </div>
 
-<ul>
+<ul class="course-list">
   <li ng-repeat="course in coursesList">
-    <a ng-href="#/course/{{course.id}}">{{course.title}} - {{course.groupName}}</a>
+    <a ng-href="#/course/{{course.id}}" ng-bind="course.title"></a>
+    <span class="label label-default">{{course.groupName}}</span>
+    <span class="label label-primary">{{course.quarter}} quarter</span>
   </li>
 </ul>

@@ -20,6 +20,9 @@ angular.module('myApp.services', [])
   this.getGroupInfoPromise = function getGroupInfoPromise(id) {
     return $http.get('/api/group/' + id);
   }
+  this.getGroupCoursesListPromise = function getGroupCoursesListPromise(id) {
+    return $http.get('/api/group/' + id + '/courses');
+  }
   this.getGroupStudentsListPromise = function getGroupStudentsListPromise(id) {
     return $http.get('/api/group/' + id + '/students');
   }
@@ -37,5 +40,15 @@ angular.module('myApp.services', [])
         });
     
     return deferred.promise;
+  }
+  
+  this.getCourseInfoPromise = function getCourseInfoPromise(id) {
+    return $http.get('/api/course/' + id + '');
+  }
+  this.getCourseLabsListPromise = function getCourseLabsListPromise(id) {
+    return $http.get('/api/course/' + id + '/labs');
+  }
+  this.getCourseStudentsListPromise = function getCourseStudentsListPromise(id) {
+    return $http.get('/api/course/' + id + '/students');
   }
 }]);
