@@ -10,18 +10,18 @@
 </head>
 <body ng-controller="MainController">
   <div class="row" id="header">
-    <a class="col-sm-3 col-sm-offset-1 main-title" href="#">
+    <a class="col-sm-4 col-sm-offset-1 main-title" href="#">
       Labs Accounting <small>application</small>
     </a>
     
-    <div class="col-sm-3 col-sm-offset-4 login-info" ng-if="login.name">
+    <div class="col-sm-4 col-sm-offset-2 login-info" ng-if="login.name">
       Hello, <b>{{login.name}} {{login.surname}}</b>
       <div ng-click="performLogout()" class="log-out hint--right hint--info" data-hint="Sign out">
         <span class="glyphicon glyphicon-log-out"></span>
       </div>
     </div>
     
-    <div class="login-toggler-wrapper col-sm-1 col-sm-offset-7" ng-if="login.login == undefined" >
+    <div class="login-toggler-wrapper col-sm-1 col-sm-offset-6" ng-if="login.login == undefined" >
       <div class="login-toggler" ng-class="{active: loginWindowVisibility}" ng-click="toggleLogin()">Sign in</div>
     </div>
   </div>
