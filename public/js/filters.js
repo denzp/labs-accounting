@@ -42,6 +42,6 @@ angular.module('myApp.filters', [])
     if(!input)
       return '0%';
     
-    return Math.round(input * 100) + '%';
+    return parseInt(input) + '%';
   }
 })

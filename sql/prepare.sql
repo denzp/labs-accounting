@@ -58,7 +58,7 @@ CREATE TABLE "Course" (
 CREATE TABLE "Marks" (
   "id" INTEGER NOT NULL,
   "student" INTEGER NOT NULL,
-  "weight" REAL NOT NULL,
+  "weight" INTEGER NOT NULL,
   "lab" INTEGER NOT NULL,
   
   PRIMARY KEY ("id"),
@@ -69,7 +69,7 @@ CREATE TABLE "Marks" (
 CREATE TABLE "Labs" (
   "id" INTEGER,
   "course" INTEGER,
-  "refMark" REAL,
+  "refMark" INTEGER,
   "name" TEXT,
   
   PRIMARY KEY ("id"),
