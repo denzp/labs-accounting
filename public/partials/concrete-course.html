@@ -33,8 +33,8 @@
       <td ng-repeat="test in testsList">0</td>
       
       <td>0</td>
-      <td>TODO</td>
-      <td>TODO</td>
+      <td ng-bind="calcSum(student.id)"></td>
+      <td ng-bind="getMark(student.id)"></td>
     </tr>
   </tbody>
   <tfoot>
@@ -46,7 +46,7 @@
       <td ng-repeat="test in testsList"></td>
       
       <td></td>
-      <td>TODO</td>
+      <td>{{ getTotalSumm() }}</td>
       <td></td>
     </tr>
   </tfoot>
