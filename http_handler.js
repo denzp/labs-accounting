@@ -72,6 +72,17 @@ module.exports = function(app) {
     });
   })
   
+  .post('/api/teacher/full', function(req, res) {
+    app.getAllTeachersFullInfo(req.body.login, req.body.pubkey, req.connection.remoteAddress, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/teacher/add', function(req, res) {
+    app.addNewTeacher(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  
   .use(express.static(__dirname + '/public'))
   .listen(process.env.PORT || 8080);
 }

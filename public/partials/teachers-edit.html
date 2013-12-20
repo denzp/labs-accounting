@@ -1,0 +1,93 @@
+<div class="page-header">
+  <h1>Teachers</h1>
+</div>
+
+<form name="newClient">
+  <table class="table table-striped editable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Patronymic</th>
+        <th>Surname</th>
+        
+        <th>Login</th>
+        <th>Password</th>
+        
+        <th>AccessType</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="teacher in teacherList">
+        <td>
+          <a ng-click="changeName(teacher.id)">{{teacher.name}}</a>
+        </td>
+        <td>
+          <a ng-click="changeSurname(teacher.id)">{{teacher.surname}}</a>
+        </td>
+        <td>
+          <a ng-click="changePatronymic(teacher.id)">{{teacher.patronymic}}</a>
+        </td>
+        
+        <td>
+          <a ng-click="changeLogin(teacher.id)">{{teacher.login}}</a>
+        </td>
+        <td>
+          <a ng-click="changePassword(teacher.id)">*secret*</a>
+        </td>
+        
+        <td ng-if="login.id != teacher.id">
+          <select class="form-control" ng-model="teacher.accessType" ng-change="changeAccess(teacher.id)">
+            <option value="1">Teacher</option>
+            <option value="2">Administrator</option>
+          </select>
+        </td>
+        <td ng-if="login.id == teacher.id">
+          Administrator
+        </td>
+        
+        <td>
+          <button type="button" class="btn btn-danger btn-xs" disabled ng-click="deteteTeacher(teacher.id)">
+            <span class="glyphicon glyphicon-remove"></span>
+            delete
+          </button>
+        </td>
+      </tr>
+      
+      
+      <tr>
+        <td>
+          <input type="text" class="form-control" ng-model="newTeacher.name" name="_name" placeholder="Enter name" required />
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="newTeacher.patronymic" name="_patronymic" placeholder="Enter patronymic" required />
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="newTeacher.surname" name="_surname" placeholder="Enter surname" required />
+        </td>
+        
+        <td>
+          <input type="text" class="form-control" ng-model="newTeacher.login" name="_login" placeholder="Enter login" required />
+        </td>
+        <td>
+          <input type="password" class="form-control" ng-model="newTeacher.password" name="_password" placeholder="Enter password" required />
+        </td>
+        
+        <td>
+          <select class="form-control" ng-model="newTeacher.accessType">
+            <option value="1">Teacher</option>
+            <option value="2">Administrator</option>
+          </select>
+        </td>
+        
+        <td>
+          <button type="button" class="btn btn-success btn-xs" ng-disabled="newClient.$invalid" ng-click="addNewTeacher()">
+            <span class="glyphicon glyphicon-plus"></span>
+            add
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

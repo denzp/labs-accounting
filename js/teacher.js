@@ -35,6 +35,37 @@ TeacherHelper.prototype.getTeacherCourses = function(id, callback) {
   })
 }
 
+TeacherHelper.prototype.getAllTeachersFullInfo = function(login, pubkey, ip, callback) {
+  // TODO -- security check!
+  
+  this.db.all('SELECT * FROM "Teachers";', function(err, data) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
+TeacherHelper.prototype.addNewTeacher = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  var query = [
+    'INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "surname", "patronymic")',
+    'VALUES ("' + data.login + '","' + data.password + '","", ' + data.accessType + ', "' + data.name + '", "' + data.surname + '", "' + data.patronymic + '");'
+  ];
+  this.db.exec(query.join(' '), function(err) {
+    if(err)
+      throw err;
+    
+    this.db.all('SELECT * FROM "Teachers" WHERE "login"="' + data.login + '";', function(err, data) {
+      if(err)
+        throw err;
+      
+      callback(200, data);
+    })
+  }.bind(this))
+}
+
 TeacherHelper.mixin = function(destObject){
   Object.keys(TeacherHelper.prototype).forEach(function(property) {
     destObject.prototype[property] = TeacherHelper.prototype[property];

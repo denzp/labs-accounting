@@ -2,7 +2,7 @@
 
 angular.module('myApp.services', [])
 
-.service('Backend', ['$http', '$q', function($http, $q) {
+.service('Backend', ['$http', '$q', 'Auth', function($http, $q, Auth) {
   this.getGroupListPromise = function getGroupListPromise() {
     return $http.get('/api/group');
   }
@@ -50,5 +50,43 @@ angular.module('myApp.services', [])
   }
   this.getCourseStudentsListPromise = function getCourseStudentsListPromise(id) {
     return $http.get('/api/course/' + id + '/students');
+  }
+  
+  
+  // POST
+  this.getTeacherFullListPromise = function getTeacherListPromise() {
+    return $http.post('/api/teacher/full', {
+      login: Auth.login,
+      pubkey: Auth.pubkey
+    })
+  }
+  
+  this.addNewTeacher = function addNewTeacher(data) {
+    return $http.post('/api/teacher/add', { data: data });
+  }
+}])
+
+.service('Auth', [function() {
+  var data = JSON.parse(localStorage.loginData || '{ }');
+  
+  this.__defineGetter__('data', function() {
+    return data;
+  });
+  
+  this.set = function(obj) {
+    for(var i in data)
+      delete data[i];
+    
+    for(var i in obj)
+      data[i] = obj[i];
+    
+    localStorage.loginData = JSON.stringify(data);
+  }
+  
+  this.clear = function() {
+    for(var i in data)
+      delete data[i];
+    
+    localStorage.loginData = '{ }';
   }
 }]);

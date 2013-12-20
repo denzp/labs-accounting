@@ -2,20 +2,45 @@
 
 angular.module('myApp.controllers', [])
 
-.controller('Teachers', ['$scope', 'teacherList', function($scope, teacherList) {
+.controller('Teachers', ['$scope', 'teacherList', 'Auth', function($scope, teacherList, Auth) {
+  $scope.login = Auth.data;
   $scope.teacherList = teacherList.data;
+  
+  $scope.edit = function() {
+    window.location.hash += '/edit';
+  }
 }])
 
-.controller('ConcreteTeacher', ['$scope', 'teacherInfo', 'coursesList', function($scope, teacherInfo, coursesList) {
+.controller('TeachersEdit', ['$scope', 'teacherFullList', 'Backend', 'Auth', function($scope, teacherFullList, Backend, Auth) {
+  $scope.login = Auth.data;
+  $scope.teacherList = teacherFullList.data;
+  
+  $scope.newTeacher = { accessType: 1 };
+  $scope.addNewTeacher = function() {
+    Backend
+      .addNewTeacher($scope.newTeacher)
+      .then(function(result) {
+        $scope.teacherList.push(result.data[0]);
+        $scope.newTeacher = { accessType: 1 };
+      }, function(result) {
+        console.error(result);
+      })
+  }
+}])
+
+.controller('ConcreteTeacher', ['$scope', 'teacherInfo', 'coursesList', 'Auth', function($scope, teacherInfo, coursesList, Auth) {
+  $scope.login = Auth.data;
   $scope.info = teacherInfo.data;
   $scope.coursesList = coursesList.data;
 }])
 
-.controller('Groups', ['$scope', 'groupList', function($scope, groupList) {
+.controller('Groups', ['$scope', 'groupList', 'Auth', function($scope, groupList, Auth) {
+  $scope.login = Auth.data;
   $scope.groupList = groupList.data;
 }])
 
-.controller('ConcreteGroup', ['$scope', 'coursesList', 'groupInfo', function($scope, coursesList, groupInfo) {
+.controller('ConcreteGroup', ['$scope', 'coursesList', 'groupInfo', 'Auth', function($scope, coursesList, groupInfo, Auth) {
+  $scope.login = Auth.data;
   $scope.groupCoursesList = coursesList.data;
   $scope.info = groupInfo.data;
   
@@ -36,18 +61,27 @@ angular.module('myApp.controllers', [])
     ++$scope.quarters[v.quarter].count;
   })
   
-  $scope.quarters[maxQuarter].visible = true;
+  if($scope.quarters[maxQuarter])
+    $scope.quarters[maxQuarter].visible = true;
+  
+  $scope.view = function() {
+    window.location.hash += '/students';
+  }
 }])
 
-.controller('MainController', ['$scope', '$timeout', 'Backend', function($scope, $timeout, Backend) {
+.controller('ConcreteGroupStudents', ['$scope', 'studentsList', 'groupInfo', function($scope, studentsList, groupInfo) {
+  $scope.studentsList = studentsList.data;
+  $scope.info = groupInfo.data;
+}])
+
+.controller('MainController', ['$scope', '$timeout', 'Backend', 'Auth', function($scope, $timeout, Backend, Auth) {
+  $scope.login = Auth.data;
+  
   $scope.loginWindowVisibility = false;
   $scope.toggleLogin = function() {
     $scope.loginWindowVisibility = !$scope.loginWindowVisibility;
   }
-  
-  
-  $scope.login = JSON.parse(localStorage.loginData || '{ }');
-  
+
   $scope.auth = { };
   $scope.performAuth = function() {
     Backend
@@ -59,15 +93,14 @@ angular.module('myApp.controllers', [])
     $timeout(function() {
       $scope.loginWindowVisibility = false;
       
-      $scope.login = {
+      Auth.set({
         id: data.id,
         pubkey: data.pubkey,
         login: data.login,
         name: data.name,
-        surname: data.surname
-      }
-      
-      localStorage.loginData = JSON.stringify($scope.login);
+        surname: data.surname,
+        access: data.accessType
+      })
     })
   }
   var failedLogin = function() {
@@ -75,12 +108,13 @@ angular.module('myApp.controllers', [])
   }
   
   $scope.performLogout = function() {
-    $scope.login = { };
-    localStorage.loginData = '{ }';
+    Auth.clear();
+    //window.location.reload();
   }
 }])
 
-.controller('ConcreteCourse', ['$scope', 'courseInfo', 'labsList', 'studentsList', function($scope, courseInfo, labsList, studentsList) {
+.controller('ConcreteCourse', ['$scope', 'courseInfo', 'labsList', 'studentsList', 'Auth', function($scope, courseInfo, labsList, studentsList, Auth) {
+  $scope.login = Auth.data;
   $scope.info = courseInfo.data;
   $scope.labsList = labsList.data;
   $scope.studentsList = studentsList.data;

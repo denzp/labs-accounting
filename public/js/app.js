@@ -27,6 +27,13 @@ angular.module('myApp', [
       teacherList: wrap('getTeacherListPromise')
     }
   });
+  $routeProvider.when('/teacher/edit', {
+    templateUrl: 'partials/teachers-edit.html',
+    controller: 'TeachersEdit',
+    resolve: {
+      teacherFullList: wrap('getTeacherFullListPromise')
+    }
+  });
   $routeProvider.when('/teacher/:id', {
     templateUrl: 'partials/concrete-teacher.html',
     controller: 'ConcreteTeacher',
@@ -49,6 +56,14 @@ angular.module('myApp', [
     resolve: {
       groupInfo: wrapWithId('getGroupInfoPromise'),
       coursesList: wrapWithId('getGroupCoursesListPromise'),
+    }
+  });
+  $routeProvider.when('/group/:id/students', {
+    templateUrl: 'partials/concrete-group-students.html',
+    controller: 'ConcreteGroupStudents',
+    resolve: {
+      groupInfo: wrapWithId('getGroupInfoPromise'),
+      studentsList: wrapWithId('getGroupStudentsListPromise'),
     }
   });
   

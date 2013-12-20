@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1>{{info.name}} <small>students</small></h1>
+</div>
+
+<ul class="course-list">
+  <li ng-repeat="student in studentsList">
+    {{student.surname}} {{student.name}} {{student.patronymic}}
+  </li>
+</ul>

@@ -25,7 +25,7 @@ INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "su
     "test3",
     "test3SecretPw",
     "",
-    1,
+    2,
     "TestName3",
     "TestSurname3",
     "TestPatronymic3"
