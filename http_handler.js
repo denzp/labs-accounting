@@ -83,6 +83,12 @@ module.exports = function(app) {
     });
   })
   
+  .post('/api/student/add', function(req, res) {
+    app.addNewStudent(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  
   .use(express.static(__dirname + '/public'))
   .listen(process.env.PORT || 8080);
 }

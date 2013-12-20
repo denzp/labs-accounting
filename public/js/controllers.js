@@ -67,11 +67,32 @@ angular.module('myApp.controllers', [])
   $scope.view = function() {
     window.location.hash += '/students';
   }
+  $scope.edit = function() {
+    window.location.hash += '/edit';
+  }
 }])
 
 .controller('ConcreteGroupStudents', ['$scope', 'studentsList', 'groupInfo', function($scope, studentsList, groupInfo) {
   $scope.studentsList = studentsList.data;
   $scope.info = groupInfo.data;
+}])
+
+.controller('ConcreteGroupEdit', ['$scope', 'studentsList', 'groupInfo', 'Backend', function($scope, studentsList, groupInfo, Backend) {
+  $scope.studentsList = studentsList.data;
+  $scope.info = groupInfo.data;
+  
+  $scope.newStudent = { };
+  $scope.addNewStudent = function() {
+    $scope.newStudent.group = groupInfo.data.id;
+    Backend
+      .addNewStudent($scope.newStudent)
+      .then(function(result) {
+        $scope.studentsList.push(result.data[0]);
+        $scope.newStudent = { };
+      }, function(result) {
+        console.error(result);
+      })
+  }
 }])
 
 .controller('MainController', ['$scope', '$timeout', 'Backend', 'Auth', function($scope, $timeout, Backend, Auth) {

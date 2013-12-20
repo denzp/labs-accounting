@@ -64,6 +64,13 @@ angular.module('myApp.services', [])
   this.addNewTeacher = function addNewTeacher(data) {
     return $http.post('/api/teacher/add', { data: data });
   }
+  
+  this.editStudent = function addNewStudent(data) {
+    return $http.post('/api/student/edit', { data: data });
+  }
+  this.addNewStudent = function addNewStudent(data) {
+    return $http.post('/api/student/add', { data: data });
+  }
 }])
 
 .service('Auth', [function() {

@@ -39,6 +39,26 @@ GroupHelper.prototype.getGroupStudents = function(id, callback) {
   })
 }
 
+GroupHelper.prototype.addNewStudent = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  var query = [
+    'INSERT INTO "Students" ("name", "patronymic", "surname", "group")',
+    'VALUES ("' + data.name + '", "' + data.patronymic + '", "' + data.surname + '", ' + data.group + ');'
+  ];
+  this.db.exec(query.join(' '), function(err) {
+    if(err)
+      throw err;
+    
+    this.db.all('SELECT * FROM "Students" WHERE "name"="' + data.name + '" AND "surname"="' + data.surname + '" AND "group"=' + data.group + ';', function(err, data) {
+      if(err)
+        throw err;
+      
+      callback(200, data);
+    })
+  }.bind(this))
+}
+
 GroupHelper.mixin = function(destObject){
   Object.keys(GroupHelper.prototype).forEach(function(property) {
     destObject.prototype[property] = GroupHelper.prototype[property];
