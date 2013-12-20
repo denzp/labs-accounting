@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h1>{{info.name}} <small>students</small></h1>
+</div>
+
+<form name="newStudent">
+  <table class="table table-striped editable">
+    <thead>
+      <tr>
+        <th>Surname</th>
+        <th>Name</th>
+        <th>Patronymic</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="student in studentsList">
+        <td>
+          <a ng-click="changeSurname(student.id)">{{student.surname}}</a>
+        </td>
+        <td>
+          <a ng-click="changeName(student.id)">{{student.name}}</a>
+        </td>
+        <td>
+          <a ng-click="changePatronymic(student.id)">{{student.patronymic}}</a>
+        </td>
+
+        <td>
+          <button type="button" class="btn btn-danger btn-xs" disabled ng-click="deteteTeacher(teacher.id)">
+            <span class="glyphicon glyphicon-remove"></span>
+            delete
+          </button>
+        </td>
+      </tr>
+      
+      
+      <tr>
+        <td>
+          <input type="text" class="form-control" ng-model="newStudent.surname" name="_surname" placeholder="Enter surname" required />
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="newStudent.name" name="_name" placeholder="Enter name" required />
+        </td>
+        <td>
+          <input type="text" class="form-control" ng-model="newStudent.patronymic" name="_patronymic" placeholder="Enter patronymic" required />
+        </td>
+        
+        <td>
+          <button type="button" class="btn btn-success btn-xs" ng-disabled="newStudent.$invalid" ng-click="addNewStudent()">
+            <span class="glyphicon glyphicon-plus"></span>
+            add
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
