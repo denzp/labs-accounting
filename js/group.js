@@ -1,7 +1,7 @@
 function GroupHelper() { }
 
 GroupHelper.prototype.getAllGroups = function(callback) {
-  this.db.all('SELECT "id", "name" FROM "Groups";', function(err, data) {
+  this.db.all('SELECT "id", "name", "isDistanced" FROM "Groups";', function(err, data) {
     if(err)
       throw err;
     

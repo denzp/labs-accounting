@@ -47,7 +47,8 @@ AuthorizationHelper.prototype.performLogin = function(login, hash, origin, callb
         'pubkey': pubkey.toString('hex'),
         'login': data[0].login,
         'name': data[0].name,
-        'surname': data[0].surname
+        'surname': data[0].surname,
+        'accessType': data[0].accessType
       })
     })
   })
@@ -67,7 +68,7 @@ AuthorizationHelper.prototype.checkAuthorization = function(login, pubkey, callb
   
   if(pubkey.length != 64) return error();
   
-  var query = 'SELECT "id", "hash", "originHash" FROM "Teachers" WHERE "login"="' + login + '";';
+  var query = 'SELECT "id", "hash", "originHash", "accessType" FROM "Teachers" WHERE "login"="' + login + '";';
   this.db.all(query, function(err, data) {
     if(err) throw err;
     if(data.length != 1) return error();
@@ -78,7 +79,8 @@ AuthorizationHelper.prototype.checkAuthorization = function(login, pubkey, callb
       if(refPubkey.toString('hex') == pubkey)
          callback(200, {
           'auth': true,
-          'id': data[0].id
+          'id': data[0].id,
+          'accessType': data[0].accessType
         })
       else
         error();

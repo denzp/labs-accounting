@@ -12,18 +12,22 @@ var tests = [
         assert.deepEqual(body, [
           {
             "id": 1,
+            "isDistanced": 0,
             "name": "SP-11"
           },
           {
             "id": 2,
+            "isDistanced": 1,
             "name": "SP-11z"
           },
           {
             "id": 3,
+            "isDistanced": 0,
             "name": "SP-12-1"
           },
           {
             "id": 4,
+            "isDistanced": 0,
             "name": "SP-12-2"
           }
         ])

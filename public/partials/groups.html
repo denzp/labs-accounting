@@ -1,3 +1,8 @@
+<button type="button" class="btn btn-primary edit-button" ng-if="login.access == 2" ng-click="edit()">
+  <span class="glyphicon glyphicon-pencil"></span>
+  Edit groups
+</button>
+
 <div class="page-header">
   <h1>Groups</h1>
 </div>
@@ -5,5 +10,6 @@
 <ul>
   <li ng-repeat="group in groupList">
     <a ng-href="#/group/{{group.id}}">{{group.name}}</a>
+    <span class="label label-default" ng-show="group.isDistanced">distanced</span>
   </li>
 </ul>

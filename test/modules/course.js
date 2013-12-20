@@ -10,6 +10,7 @@ var tests = [
       'have right body': function(err, respose, body) {
         var body = JSON.parse(body);
         assert.deepEqual(body, {
+          "teacher": 1,
           "id": 2,
           "title": "TestCourse2",
           "groupName": "SP-11z",
