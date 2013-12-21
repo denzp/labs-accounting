@@ -88,6 +88,11 @@ module.exports = function(app) {
       res.json(code || 200, data);
     });
   })
+  .post('/api/student/delete', function(req, res) {
+    app.deleteStudent(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
   
   .use(express.static(__dirname + '/public'))
   .listen(process.env.PORT || 8080);

@@ -93,6 +93,22 @@ angular.module('myApp.controllers', [])
         console.error(result);
       })
   }
+  
+  $scope.deleteStudent = function(id) {
+    $scope.newStudent.group = groupInfo.data.id;
+    Backend
+      .deleteStudent({ id: id })
+      .then(function(result) {
+        var students = [];
+        for(var i = 0; i < $scope.studentsList.length; ++i)
+          if($scope.studentsList[i].id != id)
+            students.push($scope.studentsList[i]);
+        
+        $scope.studentsList = students;
+      }, function(result) {
+        console.error(result);
+      })
+  }
 }])
 
 .controller('MainController', ['$scope', '$timeout', 'Backend', 'Auth', function($scope, $timeout, Backend, Auth) {

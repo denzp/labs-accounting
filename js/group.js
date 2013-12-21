@@ -59,6 +59,17 @@ GroupHelper.prototype.addNewStudent = function(login, pubkey, ip, data, callback
   }.bind(this))
 }
 
+GroupHelper.prototype.deleteStudent = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  this.db.exec('DELETE FROM "Students" WHERE "id"=' + data.id + ';', function(err) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
 GroupHelper.mixin = function(destObject){
   Object.keys(GroupHelper.prototype).forEach(function(property) {
     destObject.prototype[property] = GroupHelper.prototype[property];
