@@ -71,6 +71,9 @@ angular.module('myApp.services', [])
   this.addNewStudent = function addNewStudent(data) {
     return $http.post('/api/student/add', { data: data });
   }
+  this.deleteStudent = function deleteStudent(data) {
+    return $http.post('/api/student/delete', { data: data });
+  }
 }])
 
 .service('Auth', [function() {
