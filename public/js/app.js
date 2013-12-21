@@ -58,6 +58,13 @@ angular.module('myApp', [
       groupList: wrap('getGroupListPromise')
     }
   });
+  $routeProvider.when('/group/edit', {
+    templateUrl: 'partials/groups-edit.html',
+    controller: 'GroupsEdit',
+    resolve: {
+      groupList: wrap('getGroupListPromise')
+    }
+  });
   $routeProvider.when('/group/:id', {
     templateUrl: 'partials/concrete-group.html',
     controller: 'ConcreteGroup',

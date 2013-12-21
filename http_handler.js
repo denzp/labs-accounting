@@ -83,6 +83,22 @@ module.exports = function(app) {
     });
   })
   
+  .post('/api/group/edit', function(req, res) {
+    app.editGroup(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/group/add', function(req, res) {
+    app.addNewGroup(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/group/delete', function(req, res) {
+    app.deleteGroup(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  
   .post('/api/student/add', function(req, res) {
     app.addNewStudent(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
       res.json(code || 200, data);

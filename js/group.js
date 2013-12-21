@@ -50,13 +50,64 @@ GroupHelper.prototype.addNewStudent = function(login, pubkey, ip, data, callback
     if(err)
       throw err;
     
-    this.db.all('SELECT * FROM "Students" WHERE "name"="' + data.name + '" AND "surname"="' + data.surname + '" AND "group"=' + data.group + ';', function(err, data) {
+    this.db.all('SELECT * FROM "Students" WHERE "name"="' + data.name + '" AND "surname"="' + data.surname + '" AND "group"=' + data.group + ' ORDER BY "id" DESC;', function(err, data) {
       if(err)
         throw err;
       
       callback(200, data);
     })
   }.bind(this))
+}
+
+GroupHelper.prototype.addNewGroup = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  var query = [
+    'INSERT INTO "Groups" ("name", "isDistanced")',
+    'VALUES ("' + data.name + '", ' + data.isDistanced + ');'
+  ];
+  this.db.exec(query.join(' '), function(err) {
+    if(err)
+      throw err;
+    
+    this.db.all('SELECT * FROM "Groups" WHERE "name"="' + data.name + '" AND "isDistanced"=' + data.isDistanced + ' ORDER BY "id" DESC;', function(err, data) {
+      if(err)
+        throw err;
+      
+      callback(200, data);
+    })
+  }.bind(this))
+}
+
+GroupHelper.prototype.deleteGroup = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  this.db.exec('DELETE FROM "Groups" WHERE "id"=' + data.id + ';', function(err) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
+GroupHelper.prototype.editGroup = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  var query = ['UPDATE "Groups" SET']
+  
+  if(data.name)
+    query.push('"name"="' + data.name + '"');
+  if(data.isDistanced)
+    query.push('"isDistanced"=' + data.isDistanced);
+  
+  query.push('WHERE "id"=' + data.id + ';');
+  
+  this.db.exec(query.join(' '), function(err) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
 }
 
 GroupHelper.prototype.editStudent = function(login, pubkey, ip, data, callback) {
