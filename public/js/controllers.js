@@ -109,6 +109,34 @@ angular.module('myApp.controllers', [])
         console.error(result);
       })
   }
+  
+  $scope.changeName = function(id, v) {
+    if(v.length < 2)
+      return "Name is too short!";
+    
+    Backend.editStudent({
+      id: id,
+      name: v
+    })
+  }
+  $scope.changeSurname = function(id, v) {
+    if(v.length < 2)
+      return "Surname is too short!";
+    
+    Backend.editStudent({
+      id: id,
+      surname: v
+    })
+  }
+  $scope.changePatronymic = function(id, v) {
+    if(v.length < 2)
+      return "Patronymic is too short!";
+    
+    Backend.editStudent({
+      id: id,
+      patronymic: v
+    })
+  }
 }])
 
 .controller('MainController', ['$scope', '$timeout', 'Backend', 'Auth', function($scope, $timeout, Backend, Auth) {
