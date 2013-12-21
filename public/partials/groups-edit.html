@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h1>Groups</h1>
+</div>
+
+<table class="table table-striped editable">
+  <thead>
+    <tr>
+      <th>Group name</th>
+      <th>Type</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr ng-repeat="group in groupList">
+      <td>
+        <a editable-text="group.name" onbeforesave="changeName(group.id, $data)" blur="ignore">{{group.name}}</a>
+      </td>
+      <td>
+        <select class="form-control" ng-model="group.isDistanced" ng-change="changeType(group.id, group.isDistanced)">
+          <option value="0">Local</option>
+          <option value="1">Distanced</option>
+        </select>
+      </td>
+      
+      <td>
+        <button type="button" class="btn btn-danger btn-xs" ng-click="deleteGroup(group.id)">
+          <span class="glyphicon glyphicon-remove"></span>
+          delete
+        </button>
+      </td>
+    </tr>
+    
+    <tr ng-form="newGroupForm">
+      <td>
+        <input type="text" class="form-control" ng-model="newGroup.name" name="_name" placeholder="Enter group name" required />
+      </td>
+      <td>
+        <select class="form-control" ng-model="newGroup.isDistanced" required>
+          <option value="0">Local</option>
+          <option value="1">Distanced</option>
+        </select>
+      </td>
+      
+      <td>
+        <button type="button" class="btn btn-success btn-xs" ng-disabled="newGroupForm.$invalid" ng-click="addGroup()">
+          <span class="glyphicon glyphicon-plus"></span>
+          add
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  

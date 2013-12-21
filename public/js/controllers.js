@@ -37,6 +37,57 @@ angular.module('myApp.controllers', [])
 .controller('Groups', ['$scope', 'groupList', 'Auth', function($scope, groupList, Auth) {
   $scope.login = Auth.data;
   $scope.groupList = groupList.data;
+  
+  $scope.edit = function() {
+    window.location.hash += '/edit';
+  }
+}])
+
+.controller('GroupsEdit', ['$scope', 'groupList', 'Backend', function($scope, groupList, Backend) {
+  $scope.groupList = groupList.data;
+  
+  $scope.newGroup = { isDistanced: 0 };
+  $scope.addGroup = function() {
+    Backend
+      .addGroup($scope.newGroup)
+      .then(function(result) {
+        $scope.groupList.push(result.data[0]);
+        $scope.newGroup = { };
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.deleteGroup = function(id) {
+    Backend
+      .deleteGroup({ id: id })
+      .then(function(result) {
+        var groups = [];
+        for(var i = 0; i < $scope.groupList.length; ++i)
+          if($scope.groupList[i].id != id)
+            groups.push($scope.groupList[i]);
+        
+        $scope.groupList = groups;
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.changeName = function(id, v) {
+    if(v.length < 2)
+      return "Group name is too short!";
+    
+    Backend.editGroup({
+      id: id,
+      name: v
+    })
+  }
+  $scope.changeType = function(id, v) {
+    Backend.editGroup({
+      id: id,
+      isDistanced: v
+    })
+  }
 }])
 
 .controller('ConcreteGroup', ['$scope', 'coursesList', 'groupInfo', 'Auth', function($scope, coursesList, groupInfo, Auth) {

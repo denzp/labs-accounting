@@ -65,7 +65,7 @@ angular.module('myApp.services', [])
     return $http.post('/api/teacher/add', { data: data });
   }
   
-  this.editStudent = function addNewStudent(data) {
+  this.editStudent = function editStudent(data) {
     return $http.post('/api/student/edit', { data: data });
   }
   this.addNewStudent = function addNewStudent(data) {
@@ -73,6 +73,16 @@ angular.module('myApp.services', [])
   }
   this.deleteStudent = function deleteStudent(data) {
     return $http.post('/api/student/delete', { data: data });
+  }
+  
+  this.deleteGroup = function editGroup(data) {
+    return $http.post('/api/group/delete', { data: data });
+  }
+  this.addGroup = function editGroup(data) {
+    return $http.post('/api/group/add', { data: data });
+  }
+  this.editGroup = function editGroup(data) {
+    return $http.post('/api/group/edit', { data: data });
   }
 }])
 
