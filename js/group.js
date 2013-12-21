@@ -59,6 +59,28 @@ GroupHelper.prototype.addNewStudent = function(login, pubkey, ip, data, callback
   }.bind(this))
 }
 
+GroupHelper.prototype.editStudent = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  var query = ['UPDATE "Students" SET']
+  
+  if(data.name)
+    query.push('"name"="' + data.name + '"');
+  if(data.surname)
+    query.push('"surname"="' + data.surname + '"');
+  if(data.patronymic)
+    query.push('"patronymic"="' + data.patronymic + '"');
+  
+  query.push('WHERE "id"=' + data.id + ';');
+  
+  this.db.exec(query.join(' '), function(err) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
 GroupHelper.prototype.deleteStudent = function(login, pubkey, ip, data, callback) {
   // TODO -- security check!
   
