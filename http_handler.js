@@ -82,6 +82,16 @@ module.exports = function(app) {
       res.json(code || 200, data);
     });
   })
+  .post('/api/teacher/delete', function(req, res) {
+    app.deleteTeacher(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/teacher/edit', function(req, res) {
+    app.editTeacher(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
   
   .post('/api/group/edit', function(req, res) {
     app.editGroup(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {

@@ -26,6 +26,75 @@ angular.module('myApp.controllers', [])
         console.error(result);
       })
   }
+  
+  $scope.deleteTeacher = function(id) {
+    Backend
+      .deleteTeacher({ id: id })
+      .then(function(result) {
+        var teachers = [];
+        for(var i = 0; i < $scope.teacherList.length; ++i)
+          if($scope.teacherList[i].id != id)
+            teachers.push($scope.teacherList[i]);
+        
+        $scope.teacherList = teachers;
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.changeName = function(id, v) {
+    if(v.length < 2)
+      return "Teacher's name is too short!";
+    
+    Backend.editTeacher({
+      id: id,
+      name: v
+    })
+  }
+  $scope.changeSurname = function(id, v) {
+    if(v.length < 2)
+      return "Teacher's surname is too short!";
+    
+    Backend.editTeacher({
+      id: id,
+      surname: v
+    })
+  }
+  $scope.changePatronymic = function(id, v) {
+    if(v.length < 2)
+      return "Teacher's patronymic is too short!";
+    
+    Backend.editTeacher({
+      id: id,
+      patronymic: v
+    })
+  }
+  
+  $scope.changeLogin = function(id, v) {
+    if(v.length < 5)
+      return "Teacher's login is too short!";
+    
+    Backend.editTeacher({
+      id: id,
+      login: v
+    })
+  }
+  $scope.changePassword = function(id, v) {
+    if(v.length < 6)
+      return "Teacher's password is too short!";
+    
+    Backend.editTeacher({
+      id: id,
+      hash: v
+    })
+  }
+  
+  $scope.changeAccess = function(id, v) {
+    Backend.editTeacher({
+      id: id,
+      accessType: parseInt(v)
+    })
+  }
 }])
 
 .controller('ConcreteTeacher', ['$scope', 'teacherInfo', 'coursesList', 'Auth', function($scope, teacherInfo, coursesList, Auth) {

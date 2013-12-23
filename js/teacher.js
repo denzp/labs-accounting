@@ -66,6 +66,48 @@ TeacherHelper.prototype.addNewTeacher = function(login, pubkey, ip, data, callba
   }.bind(this))
 }
 
+TeacherHelper.prototype.deleteTeacher = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  this.db.exec('DELETE FROM "Teachers" WHERE "id"=' + data.id + ';', function(err) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
+TeacherHelper.prototype.editTeacher = function(login, pubkey, ip, data, callback) {
+  // TODO -- security check!
+  
+  var query = ['UPDATE "Teachers" SET']
+  
+  if(data.name)
+    query.push('"name"="' + data.name + '"');
+  if(data.surname)
+    query.push('"surname"="' + data.surname + '"');
+  if(data.patronymic)
+    query.push('"patronymic"="' + data.patronymic + '"');
+  
+  if(data.login)
+    query.push('"login"="' + data.login + '"');
+  if(data.hash)
+    query.push('"hash"="' + data.hash + '"');
+  
+  if(data.accessType !== undefined)
+    query.push('"accessType"=' + data.accessType);
+  
+  
+  query.push('WHERE "id"=' + data.id + ';');
+  
+  this.db.exec(query.join(' '), function(err) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
 TeacherHelper.mixin = function(destObject){
   Object.keys(TeacherHelper.prototype).forEach(function(property) {
     destObject.prototype[property] = TeacherHelper.prototype[property];
