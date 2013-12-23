@@ -50,6 +50,15 @@ angular.module('myApp', [
       coursesList: wrapWithId('getTeacherCoursesListPromise'),
     }
   });
+  $routeProvider.when('/teacher/:id/edit', {
+    templateUrl: 'partials/concrete-teacher-edit.html',
+    controller: 'ConcreteTeacherEdit',
+    resolve: {
+      teacherInfo: wrapWithId('getTeacherInfoPromise'),
+      coursesList: wrapWithId('getTeacherCoursesListPromise'),
+      groupList: wrap('getGroupListPromise')
+    }
+  });
   
   $routeProvider.when('/group', {
     templateUrl: 'partials/groups.html',
