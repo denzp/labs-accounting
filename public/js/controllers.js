@@ -101,6 +101,24 @@ angular.module('myApp.controllers', [])
   $scope.login = Auth.data;
   $scope.info = teacherInfo.data;
   $scope.coursesList = coursesList.data;
+  
+  $scope.edit = function() {
+    window.location.hash += '/edit';
+  }
+}])
+
+.controller('ConcreteTeacherEdit', ['$scope', 'teacherInfo', 'coursesList', 'groupList', 'Auth', function($scope, teacherInfo, coursesList, groupList, Auth) {
+  $scope.info = teacherInfo.data;
+  $scope.coursesList = coursesList.data;
+  $scope.groupList = groupList.data;
+  
+  var groups = { };
+  
+  for(var i = 0; i < $scope.groupList.length; ++i)
+    groups[$scope.groupList[i].name] = $scope.groupList[i];
+  
+  for(var i = 0; i < $scope.coursesList.length; ++i)
+    $scope.coursesList[i].groupName = groups[$scope.coursesList[i].groupName];
 }])
 
 .controller('Groups', ['$scope', 'groupList', 'Auth', function($scope, groupList, Auth) {

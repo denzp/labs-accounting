@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1>{{info.name}} {{info.surname}} <small>courses</small></h1>
+</div>
+
+
+<table class="table table-striped editable">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Group</th>
+      <th>Quarter</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr ng-repeat="course in coursesList">
+      <td>
+        <a editable-text="course.title" onbeforesave="changeTitle(course.id, $data)" blur="ignore">{{course.title}}</a>
+      </td>
+      <td>
+        <a href="#" editable-select="course.groupName" e-ng-options="s.name for s in groupList">
+          {{course.groupName.name}}
+        </a>
+      </td>
+      <td>
+        <a editable-text="course.quarter" onbeforesave="changeQuarter(course.id, $data)" blur="ignore" style="padding: 3px 5px;">{{course.quarter}}</a>
+      </td>
+            
+      <td>
+        <button type="button" class="btn btn-danger btn-xs" ng-click="deleteCourse(course.id)">
+          <span class="glyphicon glyphicon-remove"></span>
+          delete
+        </button>
+      </td>
+    </tr>
+    
+    
+    <tr ng-form="newCourseForm">
+      <td>
+        <input type="text" class="form-control" ng-model="newCourse.title" name="_title" placeholder="Enter course title" required />
+      </td>
+      <td>
+        <select class="form-control" ng-model="newTeacher.group" required>
+          <option ng-repeat="group in groupList" value="{{group.id}}">{{group.name}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control" ng-model="newCourse.quarter" name="_quarter" placeholder="Enter quarter" required />
+      </td>
+      
+      <td>
+        <button type="button" class="btn btn-success btn-xs" ng-disabled="newCourseForm.$invalid" ng-click="addCourse()">
+          <span class="glyphicon glyphicon-plus"></span>
+          add
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
