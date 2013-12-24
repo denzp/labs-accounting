@@ -14,7 +14,7 @@ CREATE TABLE "Teachers" (
 );
 
 INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "surname", "patronymic")
-  VALUES ("admin", "ChangeMe!", "", 2, "Admin", "", "");
+  VALUES ("admin", "ChangeMe", "", 2, "Admin", "", "");
 
 CREATE TABLE "AccessType" (
   "id" INTEGER NOT NULL,
@@ -66,7 +66,18 @@ CREATE TABLE "Marks" (
   
   PRIMARY KEY ("id"),
   CONSTRAINT "fk_Marks_Students_1" FOREIGN KEY ("student") REFERENCES "Students" ("id"),
-  CONSTRAINT "fk_Marks_Labs_1" FOREIGN KEY ("id") REFERENCES "Labs" ("id")
+  CONSTRAINT "fk_Marks_Labs_1" FOREIGN KEY ("lab") REFERENCES "Labs" ("id")
+);
+
+CREATE TABLE "TestMarks" (
+  "id" INTEGER NOT NULL,
+  "student" INTEGER NOT NULL,
+  "count" FLOAT NOT NULL,
+  "test" INTEGER NOT NULL,
+  
+  PRIMARY KEY ("id"),
+  CONSTRAINT "fk_TestMarks_Students_1" FOREIGN KEY ("student") REFERENCES "Students" ("id"),
+  CONSTRAINT "fk_TestMarks_Tests_1" FOREIGN KEY ("test") REFERENCES "Tests" ("id")
 );
 
 CREATE TABLE "Labs" (
@@ -78,4 +89,14 @@ CREATE TABLE "Labs" (
   PRIMARY KEY ("id"),
   CONSTRAINT "fk_Labs_Course_1" FOREIGN KEY ("course") REFERENCES "Course" ("id"),
   CONSTRAINT "uniqueLabId" UNIQUE ("id")
+);
+
+CREATE TABLE "Tests" (
+  "id" INTEGER,
+  "course" INTEGER,
+  "name" TEXT,
+  
+  PRIMARY KEY ("id"),
+  CONSTRAINT "fk_Tests_Course_1" FOREIGN KEY ("course") REFERENCES "Course" ("id"),
+  CONSTRAINT "uniqueTestsId" UNIQUE ("id")
 );

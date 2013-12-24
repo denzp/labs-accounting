@@ -48,6 +48,15 @@ angular.module('myApp.services', [])
   this.getCourseLabsListPromise = function getCourseLabsListPromise(id) {
     return $http.get('/api/course/' + id + '/labs');
   }
+  this.getCourseTestsListPromise = function getCourseTestsListPromise(id) {
+    return $http.get('/api/course/' + id + '/tests');
+  }
+  this.getCourseLabsMarksListPromise = function getCourseLabsMarksListPromise(id) {
+    return $http.get('/api/course/' + id + '/labs/marks');
+  }
+  this.getCourseTestsMarksListPromise = function getCourseTestsMarksListPromise(id) {
+    return $http.get('/api/course/' + id + '/tests/marks');
+  }
   this.getCourseStudentsListPromise = function getCourseStudentsListPromise(id) {
     return $http.get('/api/course/' + id + '/students');
   }

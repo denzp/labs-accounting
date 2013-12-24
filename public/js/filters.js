@@ -45,3 +45,12 @@ angular.module('myApp.filters', [])
     return parseInt(input) + '%';
   }
 })
+
+.filter('testMark', function() {
+  return function(input) {
+    if(!input)
+      return '0';
+    
+    return parseInt(input);
+  }
+})

@@ -162,3 +162,56 @@ INSERT INTO "Labs" ("course", "refMark", "name")
     5,
     "Lab3"
   );
+  
+INSERT INTO "Marks" ("student", "weight", "lab")
+  VALUES (
+    0,
+    100,
+    1
+  );
+  
+INSERT INTO "Marks" ("student", "weight", "lab")
+  VALUES (
+    0,
+    75,
+    2
+  );
+  
+INSERT INTO "Marks" ("student", "weight", "lab")
+  VALUES (
+    0,
+    50,
+    3
+  );
+  
+INSERT INTO "Tests" ("course", "name")
+  VALUES (
+    1,
+    "Test1"
+  );
+  
+INSERT INTO "Tests" ("course", "name")
+  VALUES (
+    1,
+    "Test2"
+  );
+  
+INSERT INTO "Tests" ("course", "name")
+  VALUES (
+    1,
+    "Test3"
+  );
+  
+INSERT INTO "TestMarks" ("student", "count", "test")
+  VALUES (
+    0,
+    20,
+    1
+  );
+  
+INSERT INTO "TestMarks" ("student", "count", "test")
+  VALUES (
+    0,
+    14,
+    2
+  );

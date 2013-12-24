@@ -365,10 +365,14 @@ angular.module('myApp.controllers', [])
   }
 }])
 
-.controller('ConcreteCourse', ['$scope', 'courseInfo', 'labsList', 'studentsList', 'Auth', function($scope, courseInfo, labsList, studentsList, Auth) {
+.controller('ConcreteCourse', ['$scope', 'courseInfo', 'labsList', 'testsList',
+                               'labsMarksList', 'testsMarksList', 'studentsList', 'Auth',
+                               function($scope, courseInfo, labsList, testsList, labsMarksList, testsMarksList, studentsList, Auth) 
+{
   $scope.login = Auth.data;
   $scope.info = courseInfo.data;
   $scope.labsList = labsList.data;
+  $scope.testsList = testsList.data;
   $scope.studentsList = studentsList.data;
   
   $scope.calcScale = function(studentId, labId) {
@@ -429,31 +433,77 @@ angular.module('myApp.controllers', [])
     for(var i in student)
       summ += parseInt(student[i]) * ref[i] / 100;
     
+    var tests = $scope.testMarks[studentId] || [];
+    for(var i in tests)
+      summ += parseInt(tests[i])
+    
     $scope.totalMarks[studentId] = summ;
     return summ;
   }
   
-  // mock data
-  $scope.testsList = [
-    { name: 'Test 1' },
-    { name: 'Test 2' }
-  ];
+  $scope.labMarks = { };
+  for(var i = 0; i < labsMarksList.data.length; ++i) {
+    $scope.labMarks[labsMarksList.data[i].student] = $scope.labMarks[labsMarksList.data[i].student] || { };
+    $scope.labMarks[labsMarksList.data[i].student][labsMarksList.data[i].lab] = labsMarksList.data[i].weight;
+  }
   
-  $scope.labMarks = {
-    0: {
-      1: 54,
-      4: 100
-    },
+  $scope.testMarks = { };
+  for(var i = 0; i < testsMarksList.data.length; ++i) {
+    $scope.testMarks[testsMarksList.data[i].student] = $scope.testMarks[labsMarksList.data[i].student] || { };
+    $scope.testMarks[testsMarksList.data[i].student][testsMarksList.data[i].test] = testsMarksList.data[i].count;
+  }
+  
+  $scope.edit = function() {
+    window.location.hash += '/edit';
+  }
+}])
+
+.controller('ConcreteCourseEdit', ['$scope', 'courseInfo', 'labsList', 'testsList',
+                                   'labsMarksList', 'testsMarksList', 'studentsList', 'Auth', 'Backend',
+                                   function($scope, courseInfo, labsList, testsList, labsMarksList, testsMarksList, studentsList, Auth, Backend) 
+{
+  $scope.login = Auth.data;
+  $scope.info = courseInfo.data;
+  $scope.labsList = labsList.data;
+  $scope.testsList = testsList.data;
+  $scope.studentsList = studentsList.data;
+  
+  $scope.getTotalSumm = function() {
+    var summ = 0;
+    for(var i = 0; i < $scope.labsList.length; ++i)
+      summ += $scope.labsList[i].refMark;
     
-    1: {
-      1: 55,
-      4: 100,
-      3: 80,
-      2: 99
-    },
+    return summ;
+  }
+  
+  $scope.calcSum = function(studentId) {
+    var summ = 0;
+    var student = $scope.labMarks[studentId] || [];
     
-    2: {
-      3: 10
-    }
+    var ref = { };
+    $scope.labsList.map(function(v) {
+      ref[v.id] = v.refMark;
+    })
+    
+    for(var i in student)
+      summ += parseInt(student[i]) * ref[i] / 100;
+    
+    var tests = $scope.testMarks[studentId] || [];
+    for(var i in tests)
+      summ += parseInt(tests[i]);
+      
+    return summ;
+  }
+  
+  $scope.labMarks = { };
+  for(var i = 0; i < labsMarksList.data.length; ++i) {
+    $scope.labMarks[labsMarksList.data[i].student] = $scope.labMarks[labsMarksList.data[i].student] || { };
+    $scope.labMarks[labsMarksList.data[i].student][labsMarksList.data[i].lab] = labsMarksList.data[i].weight;
+  }
+  
+  $scope.testMarks = { };
+  for(var i = 0; i < testsMarksList.data.length; ++i) {
+    $scope.testMarks[testsMarksList.data[i].student] = $scope.testMarks[labsMarksList.data[i].student] || { };
+    $scope.testMarks[testsMarksList.data[i].student][testsMarksList.data[i].test] = testsMarksList.data[i].count;
   }
 }])
