@@ -81,14 +81,24 @@ angular.module('myApp.services', [])
     return $http.post('/api/student/delete', { data: data });
   }
   
-  this.deleteGroup = function editGroup(data) {
+  this.deleteGroup = function deleteGroup(data) {
     return $http.post('/api/group/delete', { data: data });
   }
-  this.addGroup = function editGroup(data) {
+  this.addGroup = function addGroup(data) {
     return $http.post('/api/group/add', { data: data });
   }
   this.editGroup = function editGroup(data) {
     return $http.post('/api/group/edit', { data: data });
+  }
+  
+  this.deleteCourse = function deleteCourse(data) {
+    return $http.post('/api/course/delete', { data: data });
+  }
+  this.addCourse = function addCourse(data) {
+    return $http.post('/api/course/add', { data: data });
+  }
+  this.editCourse = function editCourse(data) {
+    return $http.post('/api/course/edit', { data: data });
   }
 }])
 

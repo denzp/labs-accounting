@@ -13,6 +13,9 @@ CREATE TABLE "Teachers" (
   CONSTRAINT "uniqueTeacherId" UNIQUE ("id")
 );
 
+INSERT INTO "Teachers" ("login", "hash", "originHash", "accessType", "name", "surname", "patronymic")
+  VALUES ("admin", "ChangeMe!", "", 2, "Admin", "", "");
+
 CREATE TABLE "AccessType" (
   "id" INTEGER NOT NULL,
   "description" TEXT NOT NULL,

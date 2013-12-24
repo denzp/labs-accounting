@@ -107,18 +107,67 @@ angular.module('myApp.controllers', [])
   }
 }])
 
-.controller('ConcreteTeacherEdit', ['$scope', 'teacherInfo', 'coursesList', 'groupList', 'Auth', function($scope, teacherInfo, coursesList, groupList, Auth) {
+.controller('ConcreteTeacherEdit', ['$scope', 'teacherInfo', 'coursesList', 'groupList', 'Auth', 'Backend', function($scope, teacherInfo, coursesList, groupList, Auth, Backend) {
   $scope.info = teacherInfo.data;
   $scope.coursesList = coursesList.data;
   $scope.groupList = groupList.data;
   
-  var groups = { };
-  
+  $scope.groupInfo = { };
   for(var i = 0; i < $scope.groupList.length; ++i)
-    groups[$scope.groupList[i].name] = $scope.groupList[i];
+    $scope.groupInfo[$scope.groupList[i].id] = $scope.groupList[i];
   
-  for(var i = 0; i < $scope.coursesList.length; ++i)
-    $scope.coursesList[i].groupName = groups[$scope.coursesList[i].groupName];
+  $scope.addCourse = function() {
+    $scope.newCourse.teacher = $scope.info.id;
+    
+    Backend
+      .addCourse($scope.newCourse)
+      .then(function(result) {
+        $scope.coursesList.push(result.data[0]);
+        $scope.newCourse = { };
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.deleteCourse = function(id) {
+    Backend
+      .deleteCourse({ id: id })
+      .then(function(result) {
+        var courses = [];
+        for(var i = 0; i < $scope.coursesList.length; ++i)
+          if($scope.coursesList[i].id != id)
+            courses.push($scope.coursesList[i]);
+        
+        $scope.coursesList = courses;
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.changeTitle = function(id, v) {
+    if(v.length < 2)
+      return "Title is too short!";
+    
+    Backend.editCourse({
+      id: id,
+      title: v
+    })
+  }
+  $scope.changeGroup = function(id, v) {
+    Backend.editCourse({
+      id: id,
+      group: parseInt(v)
+    })
+  }
+  $scope.changeQuarter = function(id, v) {
+    if(v != parseInt(v))
+      return "Please enter a number!";
+    
+    Backend.editCourse({
+      id: id,
+      quarter: v
+    })
+  }
 }])
 
 .controller('Groups', ['$scope', 'groupList', 'Auth', function($scope, groupList, Auth) {

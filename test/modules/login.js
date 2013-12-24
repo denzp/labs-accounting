@@ -12,7 +12,7 @@ var tests = [
       'response have 200 OK': utils.isOk,
       'we should successfully login': function(err, response, body) {
         assert.equal(body.error, undefined);
-        assert.equal(body.id, 1);
+        assert.equal(body.id, 2);
         assert.equal(body.pubkey.length, 64);
         assert.equal(body.auth, true);
       }
@@ -89,7 +89,7 @@ var tests = [
         
         'response have 200 OK': utils.isOk,
         'it should be ok': function(err, response, body) {
-          assert.equal(body.id, 1);
+          assert.equal(body.id, 2);
           assert.equal(body.auth, true);
         }
       },

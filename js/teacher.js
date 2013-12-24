@@ -38,7 +38,7 @@ TeacherHelper.prototype.getTeacherCourses = function(id, callback) {
 TeacherHelper.prototype.getAllTeachersFullInfo = function(login, pubkey, ip, callback) {
   // TODO -- security check!
   
-  this.db.all('SELECT * FROM "Teachers";', function(err, data) {
+  this.db.all('SELECT accessType, id, login, name, patronymic, surname FROM "Teachers";', function(err, data) {
     if(err)
       throw err;
     
@@ -57,7 +57,7 @@ TeacherHelper.prototype.addNewTeacher = function(login, pubkey, ip, data, callba
     if(err)
       throw err;
     
-    this.db.all('SELECT * FROM "Teachers" WHERE "login"="' + data.login + '";', function(err, data) {
+    this.db.all('SELECT * FROM "Teachers" WHERE "login"="' + data.login + '" ORDER BY "id" DESC;', function(err, data) {
       if(err)
         throw err;
       
