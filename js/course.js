@@ -9,6 +9,15 @@ CourseHelper.prototype.getCourseLabs = function(id, callback) {
   })
 }
 
+CourseHelper.prototype.getCourseTests = function(id, callback) {
+  this.db.all('SELECT "id", "name", "refMark" FROM "Tests" WHERE "course"=' + id + ';', function(err, data) {
+    if(err)
+      throw err;
+    
+    callback(200, data);
+  })
+}
+
 CourseHelper.prototype.getCourseInfo = function(id, callback) {
   var query = [
     'SELECT c."id", "title", "group", g."name" as "groupName", "quarter", t."id" as "teacher" FROM "Course" c',

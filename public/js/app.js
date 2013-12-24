@@ -105,6 +105,21 @@ angular.module('myApp', [
     resolve: {
       courseInfo: wrapWithId('getCourseInfoPromise'),
       labsList: wrapWithId('getCourseLabsListPromise'),
+      testsList: wrapWithId('getCourseTestsListPromise'),
+      labsMarksList: wrapWithId('getCourseLabsMarksListPromise'),
+      testsMarksList: wrapWithId('getCourseTestsMarksListPromise'),
+      studentsList: wrapWithId('getCourseStudentsListPromise'),
+    }
+  });
+  $routeProvider.when('/course/:id/edit', {
+    templateUrl: 'partials/concrete-course-edit.html',
+    controller: 'ConcreteCourseEdit',
+    resolve: {
+      courseInfo: wrapWithId('getCourseInfoPromise'),
+      labsList: wrapWithId('getCourseLabsListPromise'),
+      testsList: wrapWithId('getCourseTestsListPromise'),
+      labsMarksList: wrapWithId('getCourseLabsMarksListPromise'),
+      testsMarksList: wrapWithId('getCourseTestsMarksListPromise'),
       studentsList: wrapWithId('getCourseStudentsListPromise'),
     }
   });

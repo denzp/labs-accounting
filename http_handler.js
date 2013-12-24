@@ -34,6 +34,21 @@ module.exports = function(app) {
       res.json(code || 200, data);
     });
   })
+  .get('/api/course/:id/labs/marks', function(req, res) {
+    app.getMarks(req.params.id, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .get('/api/course/:id/tests', function(req, res) {
+    app.getCourseTests(req.params.id, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .get('/api/course/:id/tests/marks', function(req, res) {
+    app.getTestMarks(req.params.id, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
   .get('/api/course/:id/students', function(req, res) {
     app.getCourseStudents(req.params.id, function(code, data) {
       res.json(code || 200, data);
@@ -59,7 +74,7 @@ module.exports = function(app) {
     app.getGroupStudents(req.params.id, function(code, data) {
       res.json(code || 200, data);
     });
-  })
+  })  
   
   .post('/api/auth', function(req, res) {
     app.performLogin(req.body.login, req.body.hash, req.connection.remoteAddress, function(code, data) {

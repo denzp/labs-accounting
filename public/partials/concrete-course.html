@@ -16,12 +16,6 @@
       <th ng-repeat="lab in labsList" ng-bind="lab.name"></th>
       <th ng-repeat="test in testsList" ng-bind="test.name"></th>
       
-      <th>
-        <div class="log-out hint--right hint--default" data-hint="Addinational points">
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </div>
-      </th>
-      
       <th>&#x2211;</th>
       <th>Mark</th>
     </tr>
@@ -35,9 +29,10 @@
       <td ng-repeat="lab in labsList"
           ng-bind="labMarks[student.id][lab.id] | labMark"
           ng-class="calcScale(student.id, lab.id)"></td>
-      <td ng-repeat="test in testsList">0</td>
       
-      <td>0</td>
+      <td ng-repeat="test in testsList"
+          ng-bind="testMarks[student.id][test.id] | testMark"></td>
+      
       <td ng-bind="calcSum(student.id)"></td>
       <td ng-bind="getMark(student.id)"></td>
     </tr>
