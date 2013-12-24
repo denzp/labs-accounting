@@ -19,8 +19,8 @@
         <a editable-text="course.title" onbeforesave="changeTitle(course.id, $data)" blur="ignore">{{course.title}}</a>
       </td>
       <td>
-        <a href="#" editable-select="course.groupName" e-ng-options="s.name for s in groupList">
-          {{course.groupName.name}}
+        <a href="#" editable-select="course.group" e-ng-options="s.id as s.name for s in groupList" onbeforesave="changeGroup(course.id, $data)">
+          {{groupInfo[course.group].name}}
         </a>
       </td>
       <td>
@@ -41,7 +41,7 @@
         <input type="text" class="form-control" ng-model="newCourse.title" name="_title" placeholder="Enter course title" required />
       </td>
       <td>
-        <select class="form-control" ng-model="newTeacher.group" required>
+        <select class="form-control" ng-model="newCourse.group" required>
           <option ng-repeat="group in groupList" value="{{group.id}}">{{group.name}}</option>
         </select>
       </td>

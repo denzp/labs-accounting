@@ -10,20 +10,26 @@ var tests = [
       'have right body': function(err, response, body) {
         var body = JSON.parse(body);
         assert.deepEqual(body, [
+          { 
+            id: 1, 
+            name: 'Admin', 
+            surname: '', 
+            patronymic: '' 
+          },
           {
-            id: 1,
+            id: 2,
             name: 'TestName1',
             surname: 'TestSurname1',
             patronymic: 'TestPatronymic1'
           },
           {
-            id: 2,
+            id: 3,
             name: 'TestName2',
             surname: 'TestSurname2',
             patronymic: 'TestPatronymic2'
           },
           {
-            id: 3,
+            id: 4,
             name: 'TestName3',
             surname: 'TestSurname3',
             patronymic: 'TestPatronymic3'
@@ -33,13 +39,13 @@ var tests = [
     },
     
     'when we getting teacher info': {
-      topic: utils.get('/api/teacher/1'),
+      topic: utils.get('/api/teacher/2'),
       
       'response have 200 OK': utils.isOk,
       'have right body': function(err, response, body) {
         var body = JSON.parse(body);
         assert.deepEqual(body, {
-          "id": 1,
+          "id": 2,
           "name": "TestName1",
           "surname": "TestSurname1",
           "patronymic": "TestPatronymic1"
