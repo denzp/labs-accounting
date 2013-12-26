@@ -80,10 +80,10 @@
         <tr ng-form="newLabForm">
           <td></td>
           <td>
-            <input type="text" class="form-control" ng-model="newLabInfo.name" name="_name" placeholder="Enter lab name" required />
+            <input type="text" class="form-control" ng-model="newLabInfo.name" name="_name" placeholder="Enter lab name" required ng-pattern="/\w{1,2}/" />
           </td>
           <td>
-            <input type="text" class="form-control" ng-model="newLabInfo.refMark" name="_refMark" placeholder="Enter reference mark" required />
+            <input type="text" class="form-control" ng-model="newLabInfo.refMark" name="_refMark" placeholder="Enter reference mark" required ng-pattern="/^\d{1,2}$/" />
           </td>
           
           <td>

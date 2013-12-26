@@ -46,7 +46,7 @@
         </select>
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="newCourse.quarter" name="_quarter" placeholder="Enter quarter" required />
+        <input type="text" class="form-control" ng-model="newCourse.quarter" name="_quarter" placeholder="Enter quarter" required ng-pattern="/^\d{1,2}$/" />
       </td>
       
       <td>
