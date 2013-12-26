@@ -7,7 +7,11 @@
   <h1>{{info.name}} {{info.surname}} <small>courses</small></h1>
 </div>
 
-<ul class="course-list">
+<h3 ng-show="coursesList.length == 0">
+  <strong>No courses</strong> added yet!
+</h3>
+
+<ul class="course-list" ng-show="coursesList.length > 0">
   <li ng-repeat="course in coursesList">
     <a ng-href="#/course/{{course.id}}" ng-bind="course.title"></a>
     <span class="label label-default">{{course.groupName}}</span>

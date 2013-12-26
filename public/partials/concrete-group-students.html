@@ -2,7 +2,11 @@
   <h1>{{info.name}} <small>students</small></h1>
 </div>
 
-<ul class="course-list">
+<h3 ng-show="studentsList.length == 0">
+  <strong>No students</strong> added yet!
+</h3>
+
+<ul class="course-list"  ng-show="studentsList.length > 0">
   <li ng-repeat="student in studentsList">
     {{student.surname}} {{student.name}} {{student.patronymic}}
   </li>

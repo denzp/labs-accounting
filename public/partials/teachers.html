@@ -7,8 +7,12 @@
   <h1>Teachers</h1>
 </div>
 
+<h3 ng-show="teacherList.length == 0">
+  <strong>No teachers</strong> added yet!
+</h3>
+
 <ul>
-  <li ng-repeat="teacher in teacherList">
+  <li ng-repeat="teacher in teacherList" ng-show="teacherList.length > 0">
     <a ng-href="#/teacher/{{teacher.id}}">{{teacher.name}} {{teacher.patronymic}} {{teacher.surname}}</a>
   </li>
 </ul>
