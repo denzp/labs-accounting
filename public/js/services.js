@@ -109,6 +109,32 @@ angular.module('myApp.services', [])
   this.editCourse = function editCourse(data) {
     return $http.post('/api/course/edit', { data: data });
   }
+  
+  this.setMark = function setMark(data) {
+    return $http.post('/api/mark/set', { data: data });
+  }
+  this.setTestMark = function setTestMark(data) {
+    return $http.post('/api/test/set', { data: data });
+  }
+  
+  this.editLab = function editLab(data) {
+    return $http.post('/api/labs/edit', { data: data });
+  }
+  this.editTest = function editTest(data) {
+    return $http.post('/api/tests/edit', { data: data });
+  }
+  this.addLab = function addLab(data) {
+    return $http.post('/api/labs/add', { data: data });
+  }
+  this.addTest = function addTest(data) {
+    return $http.post('/api/tests/add', { data: data });
+  }
+  this.deleteLab = function deleteLab(data) {
+    return $http.post('/api/labs/delete', { data: data });
+  }
+  this.deleteTest = function deleteTest(data) {
+    return $http.post('/api/tests/delete', { data: data });
+  }
 }])
 
 .service('Auth', [function() {

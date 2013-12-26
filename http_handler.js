@@ -156,6 +156,47 @@ module.exports = function(app) {
     });
   })
   
+  .post('/api/mark/set', function(req, res) {
+    app.setMark(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/test/set', function(req, res) {
+    app.setTestMark(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/labs/delete', function(req, res) {
+    app.deleteLab(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/tests/delete', function(req, res) {
+    app.deleteTest(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/labs/add', function(req, res) {
+    app.addLab(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/tests/add', function(req, res) {
+    app.addTest(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/labs/edit', function(req, res) {
+    app.editLab(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  .post('/api/tests/edit', function(req, res) {
+    app.editTest(req.body.login, req.body.pubkey, req.connection.remoteAddress, req.body.data, function(code, data) {
+      res.json(code || 200, data);
+    });
+  })
+  
   .use(express.static(__dirname + '/public'))
   .listen(process.env.PORT || 8080);
 }

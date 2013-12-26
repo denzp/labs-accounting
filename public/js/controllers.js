@@ -496,14 +496,129 @@ angular.module('myApp.controllers', [])
   }
   
   $scope.labMarks = { };
-  for(var i = 0; i < labsMarksList.data.length; ++i) {
-    $scope.labMarks[labsMarksList.data[i].student] = $scope.labMarks[labsMarksList.data[i].student] || { };
-    $scope.labMarks[labsMarksList.data[i].student][labsMarksList.data[i].lab] = labsMarksList.data[i].weight;
+  $scope.testMarks = { };
+  for(var i = 0; i < $scope.studentsList.length; ++i) {
+    $scope.labMarks[$scope.studentsList[i].id] = { };
+    $scope.testMarks[$scope.studentsList[i].id] = { };
   }
   
-  $scope.testMarks = { };
-  for(var i = 0; i < testsMarksList.data.length; ++i) {
-    $scope.testMarks[testsMarksList.data[i].student] = $scope.testMarks[labsMarksList.data[i].student] || { };
+  for(var i = 0; i < labsMarksList.data.length; ++i)
+    $scope.labMarks[labsMarksList.data[i].student][labsMarksList.data[i].lab] = labsMarksList.data[i].weight;
+  
+  for(var i = 0; i < testsMarksList.data.length; ++i)
     $scope.testMarks[testsMarksList.data[i].student][testsMarksList.data[i].test] = testsMarksList.data[i].count;
+  
+  $scope.setTestMark = function(studentId, testId, v) {
+    if(v != parseInt(v))
+      return "Please enter a number!";
+    v = parseInt(v);
+    
+    if(v < 0 || v > 100)
+      return "The number should be in range from 0 to 100";
+    
+    Backend.setTestMark({
+      student: studentId,
+      test: testId,
+      count: v
+    })
+  }
+  $scope.setMark = function(studentId, labId, v) {
+    if(v != parseInt(v))
+      return "Please enter a number!";
+    v = parseInt(v);
+    
+    if(v < 0 || v > 100)
+      return "The number should be in range from 0 to 100";
+    
+    Backend.setMark({
+      student: studentId,
+      lab: labId,
+      weight: v
+    })
+  }
+  
+  $scope.deleteLab = function(id) {
+    Backend
+      .deleteLab({ id: id })
+      .then(function(result) {
+        var labs = [];
+        for(var i = 0; i < $scope.labsList.length; ++i)
+          if($scope.labsList[i].id != id)
+            labs.push($scope.labsList[i]);
+        
+        $scope.labsList = labs;
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  $scope.deleteTest = function(id) {
+     Backend
+      .deleteTest({ id: id })
+      .then(function(result) {
+        var tests = [];
+        for(var i = 0; i < $scope.testsList.length; ++i)
+          if($scope.testsList[i].id != id)
+            tests.push($scope.testsList[i]);
+        
+        $scope.testsList = tests;
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.newLabInfo = { };
+  $scope.addLab = function() {
+    $scope.newLabInfo.course = $scope.info.id;
+    
+    Backend
+      .addLab($scope.newLabInfo)
+      .then(function(result) {
+        $scope.labsList.push(result.data[0]);
+        $scope.newLabInfo = { };
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  $scope.newTestInfo = { };
+  $scope.addTest = function() {
+    $scope.newTestInfo.course = $scope.info.id;
+    
+    Backend
+      .addTest($scope.newTestInfo)
+      .then(function(result) {
+        $scope.testsList.push(result.data[0]);
+        $scope.newTestInfo = { };
+      }, function(result) {
+        console.error(result);
+      })
+  }
+  
+  $scope.editLabRefMark = function editLabRefMark(id, v) {
+    if(v != parseInt(v))
+      return "Please enter a number!";
+    v = parseInt(v);
+    
+    Backend.editLab({
+      id: id,
+      refMark: v
+    })
+  }
+  $scope.editLabName = function editLabRefMark(id, v) {
+    if(v.length < 3)
+      return 'Lab name is too short!';
+    
+    Backend.editLab({
+      id: id,
+      name: v
+    })
+  }
+  $scope.editTestName = function editLabRefMark(id, v) {
+    if(v.length < 3)
+      return 'Test name is too short!';
+    
+    Backend.editTest({
+      id: id,
+      name: v
+    })
   }
 }])

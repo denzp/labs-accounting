@@ -30,7 +30,7 @@
       
       <td ng-repeat="test in testsList" ng-style="{borderLeft: '{{!$index ? 1 : 0 }}px solid rgb(200, 200, 200)'}">
         <a editable-text="testMarks[student.id][test.id]" blur="ignore"
-           onbeforesave="setTestMark(student.id, lab.id, $data)">
+           onbeforesave="setTestMark(student.id, test.id, $data)">
           {{ testMarks[student.id][test.id] || 0 }}
         </a>
       </td>
@@ -118,7 +118,7 @@
       
       <tbody>
         <tr ng-repeat="test in testsList">
-          <td ng-bind="$index + 1"></td>
+          <td ng-bind="$index + 1"></tdeditTestName>
           <td>
             <a editable-text="test.name" blur="ignore"
                onbeforesave="editTestName(test.id, $data)">
@@ -137,7 +137,7 @@
         <tr ng-form="newTestForm">
           <td></td>
           <td>
-            <input type="text" class="form-control" ng-model="newTestInfo.name" name="_name" placeholder="Enter lab name" required />
+            <input type="text" class="form-control" ng-model="newTestInfo.name" name="_name" placeholder="Enter test name" required />
           </td>
           
           <td>
