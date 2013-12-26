@@ -33,7 +33,7 @@
     
     <tr ng-form="newGroupForm">
       <td>
-        <input type="text" class="form-control" ng-model="newGroup.name" name="_name" placeholder="Enter group name" required />
+        <input type="text" class="form-control" ng-model="newGroup.name" name="_name" placeholder="Enter group name" required ng-pattern="/\w{1,2}/" />
       </td>
       <td>
         <select class="form-control" ng-model="newGroup.isDistanced" required>

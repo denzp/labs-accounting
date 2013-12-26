@@ -57,20 +57,20 @@
     
     <tr ng-form="newTeacherForm">
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.name" name="_name" placeholder="Enter name" required />
+        <input type="text" class="form-control" ng-model="newTeacher.name" name="_name" placeholder="Enter name" required ng-pattern="/\w{1,2}/"  />
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.patronymic" name="_patronymic" placeholder="Enter patronymic" required />
+        <input type="text" class="form-control" ng-model="newTeacher.patronymic" name="_patronymic" placeholder="Enter patronymic" required ng-pattern="/\w{1,2}/" />
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.surname" name="_surname" placeholder="Enter surname" required />
+        <input type="text" class="form-control" ng-model="newTeacher.surname" name="_surname" placeholder="Enter surname" required ng-pattern="/\w{1,2}/" />
       </td>
       
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.login" name="_login" placeholder="Enter login" required />
+        <input type="text" class="form-control" ng-model="newTeacher.login" name="_login" placeholder="Enter login" required ng-pattern="/\w{1,2}/" />
       </td>
       <td>
-        <input type="password" class="form-control" ng-model="newTeacher.password" name="_password" placeholder="Enter password" required />
+        <input type="password" class="form-control" ng-model="newTeacher.password" name="_password" placeholder="Enter password" required ng-pattern="/\w{1,2}/" />
       </td>
       
       <td>
