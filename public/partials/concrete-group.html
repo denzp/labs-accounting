@@ -12,7 +12,11 @@
   <h1>{{info.name}} <small>courses</small></h1>
 </div>
 
-<div class="col-sm-9 main-view">
+<h3 ng-show="groupCoursesList.length == 0">
+  <strong>No courses</strong> added yet!
+</h3>
+
+<div class="col-sm-9 main-view" ng-show="groupCoursesList.length > 0">
   <ul class="course-list">
     <li ng-repeat="course in groupCoursesList | courseFilter:{ quarters: quarters } | quarterSort">
       <a ng-href="#/course/{{course.id}}" ng-bind="course.title"></a>
@@ -21,7 +25,7 @@
   </ul>
 </div>
 
-<div class="col-sm-3 right-sidebar">
+<div class="col-sm-3 right-sidebar" ng-show="groupCoursesList.length > 0">
   <h3>Quarters filter</h3>
   <ul>
     <li ng-repeat="quarter in quarters | quarterFilterSort">

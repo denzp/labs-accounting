@@ -7,7 +7,15 @@
   <h1>{{info.title}} <small>labs</small></h1>
 </div>
 
-<table class="table table-striped">
+<h3 ng-show="studentsList.length == 0">
+  <strong>No students</strong> added yet!
+</h3>
+
+<h3 ng-show="labsList.length == 0 && testsList.length == 0">
+  <strong>No labs or tests</strong> added yet!
+</h3>
+
+<table class="table table-striped" ng-show="(labsList.length > 0 || testsList.length > 0) && studentsList.length > 0">
   <thead>
     <tr>
       <th>#</th>
