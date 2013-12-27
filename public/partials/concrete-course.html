@@ -32,7 +32,7 @@
   <tbody>
     <tr ng-repeat="student in studentsList">
       <td ng-bind="$index + 1"></td>
-      <td ng-bind="student.name + ' ' + student.surname"></td>
+      <td ng-bind="student.surname + ' ' + student.name"></td>
       
       <td ng-repeat="lab in labsList"
           ng-bind="labMarks[student.id][lab.id] | labMark"
@@ -53,7 +53,6 @@
       <td ng-repeat="lab in labsList" ng-bind="lab.refMark"></td>
       <td ng-repeat="test in testsList"></td>
       
-      <td></td>
       <td>{{ getTotalSumm() }}</td>
       <td></td>
     </tr>

@@ -20,17 +20,17 @@
   <tbody>
     <tr ng-repeat="teacher in teacherList">
       <td>
-        <a editable-text="teacher.name" onbeforesave="changeName(teacher.id, $data)" blur="ignore">{{teacher.name}}</a>
+        <a editable-text="teacher.name" onbeforesave="changeName(teacher.id, $data)" blur="ignore" style="padding: 3px 5px;">{{teacher.name}}</a>
       </td>
       <td>
-        <a editable-text="teacher.surname" onbeforesave="changeSurname(teacher.id, $data)" blur="ignore">{{teacher.surname}}</a>
+        <a editable-text="teacher.surname" onbeforesave="changeSurname(teacher.id, $data)" blur="ignore" style="padding: 3px 5px;">{{teacher.surname}}</a>
       </td>
       <td>
-        <a editable-text="teacher.patronymic" onbeforesave="changePatronymic(teacher.id, $data)" blur="ignore">{{teacher.patronymic}}</a>
+        <a editable-text="teacher.patronymic" onbeforesave="changePatronymic(teacher.id, $data)" blur="ignore" style="padding: 3px 5px;">{{teacher.patronymic}}</a>
       </td>
       
       <td>
-        <a editable-text="teacher.login" onbeforesave="changeLogin(teacher.id, $data)" blur="ignore">{{teacher.login}}</a>
+        <a editable-text="teacher.login" onbeforesave="changeLogin(teacher.id, $data)" blur="ignore" style="padding: 3px 5px;">{{teacher.login}}</a>
       </td>
       <td>
         <a editable-text="'password'" onbeforesave="changePassword(teacher.id, $data)" blur="ignore">*secret*</a>
@@ -57,20 +57,20 @@
     
     <tr ng-form="newTeacherForm">
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.name" name="_name" placeholder="Enter name" required ng-pattern="/\w{1,2}/"  />
+        <input type="text" class="form-control" ng-model="newTeacher.name" name="_name" placeholder="Enter name" required />
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.patronymic" name="_patronymic" placeholder="Enter patronymic" required ng-pattern="/\w{1,2}/" />
+        <input type="text" class="form-control" ng-model="newTeacher.patronymic" name="_patronymic" placeholder="Enter patronymic" required  />
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="newTeacher.surname" name="_surname" placeholder="Enter surname" required ng-pattern="/\w{1,2}/" />
+        <input type="text" class="form-control" ng-model="newTeacher.surname" name="_surname" placeholder="Enter surname" required />
       </td>
       
       <td>
         <input type="text" class="form-control" ng-model="newTeacher.login" name="_login" placeholder="Enter login" required ng-pattern="/\w{1,2}/" />
       </td>
       <td>
-        <input type="password" class="form-control" ng-model="newTeacher.password" name="_password" placeholder="Enter password" required ng-pattern="/\w{1,2}/" />
+        <input type="password" class="form-control" ng-model="newTeacher.password" name="_password" placeholder="Enter password" required ng-pattern="/.{6,20}/" />
       </td>
       
       <td>

@@ -31,7 +31,7 @@ GroupHelper.prototype.getGroupCourses = function(id, callback) {
 }
 
 GroupHelper.prototype.getGroupStudents = function(id, callback) {
-  this.db.all('SELECT "id", "name", "patronymic", "surname" FROM "Students" WHERE "group"=' + id + ';', function(err, data) {
+  this.db.all('SELECT "id", "name", "patronymic", "surname" FROM "Students" WHERE "group"=' + id + ' ORDER BY "surname", "name", "patronymic";', function(err, data) {
     if(err)
       throw err;
     

@@ -19,7 +19,7 @@
   <tbody>
     <tr ng-repeat="student in studentsList">
       <td ng-bind="$index + 1"></td>
-      <td ng-bind="student.name + ' ' + student.surname"></td>
+      <td ng-bind="student.surname + ' ' + student.name"></td>
       
       <td ng-repeat="lab in labsList">
         <a editable-text="labMarks[student.id][lab.id]" blur="ignore"
@@ -80,7 +80,7 @@
         <tr ng-form="newLabForm">
           <td></td>
           <td>
-            <input type="text" class="form-control" ng-model="newLabInfo.name" name="_name" placeholder="Enter lab name" required ng-pattern="/\w{1,2}/" />
+            <input type="text" class="form-control" ng-model="newLabInfo.name" name="_name" placeholder="Enter lab name" required />
           </td>
           <td>
             <input type="text" class="form-control" ng-model="newLabInfo.refMark" name="_refMark" placeholder="Enter reference mark" required ng-pattern="/^\d{1,2}$/" />
